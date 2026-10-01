@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { listAllIndustryContent } from "@/lib/portfolio-db";
 import { getChart, getQuotes } from "@/lib/yahoo";
 import { getNavTimeline } from "@/lib/google-sheet-nav";
 import { getDecisions, getHoldings } from "@/lib/google-sheet-portfolio";
 import { withLiveMetrics, totalReturnPct as computeTotalReturnPct } from "@/lib/fund-engine";
-import { FUND_CONFIG, LAYERS, SECTORS } from "@/lib/sectors";
+import { FUND_CONFIG, SECTORS } from "@/lib/sectors";
 import { formatCompact, formatPercent, formatPrice, formatSigned } from "@/lib/format";
 import PerformanceChart from "@/components/portfolio/PerformanceChart";
 
@@ -20,11 +19,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 export default async function PortfolioPage() {
-  const [holdings, decisions, industryContent] = await Promise.all([
-    getHoldings(),
-    getDecisions(),
-    listAllIndustryContent(),
-  ]);
+  const [holdings, decisions] = await Promise.all([getHoldings(), getDecisions()]);
 
   const activeHoldings = holdings.filter((h) => h.status === "active");
   const symbols = activeHoldings.map((h) => h.symbol);
@@ -39,14 +34,6 @@ export default async function PortfolioPage() {
   const holdingsWithLive = withLiveMetrics(activeHoldings, quotes);
   const totalCurrentValue = holdingsWithLive.reduce((sum, h) => sum + h.currentValue, 0);
 
-  const coverage = SECTORS.map((s) => {
-    const layersPublished = LAYERS.filter((l) =>
-      industryContent.some((c) => c.sectorSlug === s.slug && c.layer === l.key)
-    ).length;
-    const overview = industryContent.find((c) => c.sectorSlug === s.slug && c.layer === "overview");
-    return { ...s, layersPublished, blurb: overview?.content ?? null };
-  });
-
   const recentDecisions = decisions.slice(0, 6);
 
   return (
@@ -55,9 +42,10 @@ export default async function PortfolioPage() {
         <p className="font-label text-[11px] text-accent">STUDENT MANAGED FUND</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Portfolio</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          A paper-traded, student-managed model portfolio across five sectors, run with the
-          discipline of an equity research desk - transparent theses, logged decisions, and a
-          research base that compounds monthly.
+          A student-managed Indian equity portfolio governed by a documented investment mandate,
+          fundamental research, valuation discipline, portfolio risk management and Investment
+          Committee oversight. NEEV is designed for long-term capital appreciation over a 3–5 year
+          investment horizon.
         </p>
         <div className="mt-4 flex flex-wrap gap-3 font-mono text-xs text-muted">
           <span className="rounded-md border border-border px-3 py-1.5">
@@ -101,7 +89,7 @@ export default async function PortfolioPage() {
           <h2 className="text-xl font-semibold text-foreground">Five mandated sectors</h2>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          {coverage.map((s) => (
+          {SECTORS.map((s) => (
             <Link
               key={s.slug}
               href={`/industries/${s.slug}`}
@@ -111,23 +99,10 @@ export default async function PortfolioPage() {
                 <h3 className="text-lg font-medium text-foreground group-hover:text-accent">
                   {s.name}
                 </h3>
-                <span className="shrink-0 font-mono text-[10px] text-muted">
-                  {s.layersPublished}/{LAYERS.length} layers
-                </span>
               </div>
-              <p className="mt-2 line-clamp-2 text-sm text-muted">
-                {s.blurb ?? "Coverage not yet published for this sector."}
+              <p className="mt-2 text-sm text-muted">
+                Research and investment insights will be published here as sector work is completed.
               </p>
-              <div className="mt-4 flex gap-1">
-                {LAYERS.map((l, i) => (
-                  <span
-                    key={l.key}
-                    className={`h-1 flex-1 rounded-full ${
-                      i < s.layersPublished ? "bg-accent" : "bg-border"
-                    }`}
-                  />
-                ))}
-              </div>
             </Link>
           ))}
         </div>
