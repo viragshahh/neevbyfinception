@@ -2,28 +2,26 @@ import type { Holding } from "./portfolio-db";
 import type { QuoteData } from "./finance-types";
 import { FUND_CONFIG } from "./sectors";
 
+function quoteFor(symbol: string, quotes: QuoteData[]) {
+  return quotes.find((x) => x.symbol === symbol);
+}
+
 /**
- * Live fund value, computed straight from holdings + current quotes - no manual NAV
- * entry required. Adding, exiting, or repricing a holding changes this number on the
- * next render. Cash = notional AUM minus what's tied up in active positions plus
- * proceeds already banked from exited ones; total value = cash + current market
- * value of everything still held.
+ * Transitional valuation using the current holding ledger.
+ * Historical cost of exited positions is removed from cash before sale
+ * proceeds are returned. This prevents sale proceeds being double counted.
  */
 export function computeFundValue(holdings: Holding[], quotes: QuoteData[]): number {
   const active = holdings.filter((h) => h.status === "active");
-  const exited = holdings.filter((h) => h.status === "exited");
+  const historicalCost = holdings.reduce((sum, h) => sum + h.avgCost * h.quantity, 0);
+  const realizedProceeds = holdings
+    .filter((h) => h.status === "exited")
+    .reduce((sum, h) => sum + (h.exitPrice ?? h.avgCost) * h.quantity, 0);
 
-  const costOfActive = active.reduce((sum, h) => sum + h.avgCost * h.quantity, 0);
-  const proceedsOfExited = exited.reduce(
-    (sum, h) => sum + (h.exitPrice ?? h.avgCost) * h.quantity,
-    0
-  );
-  const cash = FUND_CONFIG.notionalAum - costOfActive + proceedsOfExited;
-
+  const cash = FUND_CONFIG.notionalAum - historicalCost + realizedProceeds;
   const marketValueActive = active.reduce((sum, h) => {
-    const q = quotes.find((x) => x.symbol === h.symbol);
-    const ltp = q?.price ?? h.avgCost;
-    return sum + (ltp ?? h.avgCost) * h.quantity;
+    const quote = quoteFor(h.symbol, quotes);
+    return sum + (quote?.price ?? h.avgCost) * h.quantity;
   }, 0);
 
   return cash + marketValueActive;
@@ -34,16 +32,16 @@ export interface HoldingWithLive extends Holding {
   currentValue: number;
   costValue: number;
   pnlPct: number | null;
+  quoteAvailable: boolean;
 }
 
 export function withLiveMetrics(holdings: Holding[], quotes: QuoteData[]): HoldingWithLive[] {
   return holdings.map((h) => {
-    const q = quotes.find((x) => x.symbol === h.symbol);
-    const ltp = q?.price ?? null;
+    const ltp = quoteFor(h.symbol, quotes)?.price ?? null;
     const costValue = h.avgCost * h.quantity;
     const currentValue = ltp !== null ? ltp * h.quantity : costValue;
     const pnlPct = ltp !== null ? ((ltp - h.avgCost) / h.avgCost) * 100 : null;
-    return { ...h, ltp, currentValue, costValue, pnlPct };
+    return { ...h, ltp, currentValue, costValue, pnlPct, quoteAvailable: ltp !== null };
   });
 }
 
@@ -62,28 +60,20 @@ export interface FundBreakdown {
   maxSectorPct: number;
   maxSector: string | null;
   bySector: { sector: string; value: number; weightPct: number }[];
+  missingQuoteSymbols: string[];
 }
 
-/**
- * Live snapshot of the fund against the Fund Charter's own position and
- * concentration limits (max 10% per stock, max 30% per sector, 0–5% cash),
- * computed straight from current holdings + market quotes - the same live
- * numbers behind Current NAV, just broken down by stock and sector.
- */
 export function computeFundBreakdown(holdings: Holding[], quotes: QuoteData[]): FundBreakdown {
   const active = withLiveMetrics(holdings.filter((h) => h.status === "active"), quotes);
   const totalValue = computeFundValue(holdings, quotes);
   const holdingsValue = active.reduce((sum, h) => sum + h.currentValue, 0);
   const cash = totalValue - holdingsValue;
 
-  const weighted = active.map((h) => ({
-    symbol: h.symbol,
-    sector: h.sector,
-    weightPct: totalValue > 0 ? (h.currentValue / totalValue) * 100 : 0,
-  }));
-
   const sectorTotals = new Map<string, number>();
-  active.forEach((h) => sectorTotals.set(h.sector, (sectorTotals.get(h.sector) ?? 0) + h.currentValue));
+  active.forEach((h) => {
+    sectorTotals.set(h.sector, (sectorTotals.get(h.sector) ?? 0) + h.currentValue);
+  });
+
   const bySector = Array.from(sectorTotals.entries())
     .map(([sector, value]) => ({
       sector,
@@ -92,8 +82,8 @@ export function computeFundBreakdown(holdings: Holding[], quotes: QuoteData[]): 
     }))
     .sort((a, b) => b.weightPct - a.weightPct);
 
-  const topStock = weighted.reduce<{ symbol: string; weightPct: number } | null>(
-    (max, h) => (max === null || h.weightPct > max.weightPct ? h : max),
+  const topStock = active.reduce<HoldingWithLive | null>(
+    (max, h) => (max === null || h.currentValue > max.currentValue ? h : max),
     null
   );
 
@@ -103,10 +93,64 @@ export function computeFundBreakdown(holdings: Holding[], quotes: QuoteData[]): 
     holdingsValue,
     cashPct: totalValue > 0 ? (cash / totalValue) * 100 : 100,
     activeNames: active.length,
-    maxSingleStockPct: topStock?.weightPct ?? 0,
+    maxSingleStockPct: totalValue > 0 && topStock ? (topStock.currentValue / totalValue) * 100 : 0,
     maxSingleStockSymbol: topStock?.symbol ?? null,
     maxSectorPct: bySector[0]?.weightPct ?? 0,
     maxSector: bySector[0]?.sector ?? null,
     bySector,
+    missingQuoteSymbols: active.filter((h) => !h.quoteAvailable).map((h) => h.symbol),
+  };
+}
+
+export interface CharterStatus {
+  holdings: { current: number; min: number; max: number; status: "within" | "below" | "above" };
+  initialPosition: { limitPct: number };
+  singleStock: { currentPct: number; limitPct: number; status: "within" | "above" };
+  sector: { currentPct: number; limitPct: number; status: "within" | "above" };
+  cash: { currentPct: number; minPct: number; maxPct: number; status: "within" | "below" | "above" };
+  leverage: { cash: number; status: "within" | "breach" };
+}
+
+export function computeCharterStatus(breakdown: FundBreakdown): CharterStatus {
+  const holdingsStatus =
+    breakdown.activeNames < FUND_CONFIG.minNamesAtFullDeployment
+      ? "below"
+      : breakdown.activeNames > FUND_CONFIG.maxNamesAtFullDeployment
+        ? "above"
+        : "within";
+
+  return {
+    holdings: {
+      current: breakdown.activeNames,
+      min: FUND_CONFIG.minNamesAtFullDeployment,
+      max: FUND_CONFIG.maxNamesAtFullDeployment,
+      status: holdingsStatus,
+    },
+    initialPosition: { limitPct: FUND_CONFIG.maxInitialPositionWeight * 100 },
+    singleStock: {
+      currentPct: breakdown.maxSingleStockPct,
+      limitPct: FUND_CONFIG.maxSingleStockWeight * 100,
+      status: breakdown.maxSingleStockPct > FUND_CONFIG.maxSingleStockWeight * 100 ? "above" : "within",
+    },
+    sector: {
+      currentPct: breakdown.maxSectorPct,
+      limitPct: FUND_CONFIG.maxSingleSectorWeight * 100,
+      status: breakdown.maxSectorPct > FUND_CONFIG.maxSingleSectorWeight * 100 ? "above" : "within",
+    },
+    cash: {
+      currentPct: breakdown.cashPct,
+      minPct: FUND_CONFIG.minCashBuffer * 100,
+      maxPct: FUND_CONFIG.maxCashBuffer * 100,
+      status:
+        breakdown.cashPct < FUND_CONFIG.minCashBuffer * 100
+          ? "below"
+          : breakdown.cashPct > FUND_CONFIG.maxCashBuffer * 100
+            ? "above"
+            : "within",
+    },
+    leverage: {
+      cash: breakdown.cash,
+      status: breakdown.cash < -0.01 ? "breach" : "within",
+    },
   };
 }
