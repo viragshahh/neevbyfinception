@@ -15,7 +15,7 @@ export default async function ReportsPage() {
       <header className="mb-8">
         <p className="font-label text-[11px] text-accent">Research Library</p>
         <h1 className="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-          Industry Reports
+          Research Library
         </h1>
         <p className="mt-3 max-w-2xl text-muted">
           Sector deep-dives authored by Finception&apos;s research teams, covering the industries
