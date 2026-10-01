@@ -3,8 +3,8 @@ import ReportsGrid from "@/components/ReportsGrid";
 import { listReports } from "@/lib/reports-db";
 
 export const metadata: Metadata = {
-  title: "Research Library | Finception",
-  description: "Published NEEV and Finception sector research reports and investment reviews.",
+  title: "Research Library",
+  description: "Published NEEV research outputs, investment reviews and fund documents.",
 };
 
 export default async function ReportsPage() {
