@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { IndustryReport } from "@/lib/reports-db";
+import { SECTORS } from "@/lib/sectors";
 import { IconSearch } from "@/components/icons/FinanceIcons";
 
 const DOCUMENT_TYPE_LABELS: Record<string, string> = {
@@ -30,6 +31,7 @@ export default function ReportsGrid({
 }) {
   const [sector, setSector] = useState("All Reports");
   const [query, setQuery] = useState("");
+  const sectorFilters = ["All Reports", ...SECTORS.map((s) => s.name)];
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -68,12 +70,12 @@ export default function ReportsGrid({
 
       {showSectorFilters && (
         <div className="mt-4 flex flex-wrap gap-2">
-          {["All Reports"].map((s) => (
+          {sectorFilters.map((s) => (
             <button
               key={s}
               type="button"
               onClick={() => setSector(s)}
-              className="rounded-full border border-accent bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors \${s === sector ? "border-accent bg-accent/10 text-accent" : "border-border text-muted hover:border-accent hover:text-foreground"}`}
             >
               {s}
             </button>
