@@ -36,7 +36,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
             </svg>
           </button>
           <Link href="/" className="flex min-w-0 items-center gap-2">
-            <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-white px-1.5 py-1">
+            <span className="inline-flex shrink-0 items-center justify-center rounded-md px-1.5 py-1">
               <Image
                 src="/logo.png"
                 alt="Great Lakes Institute of Management, Gurgaon - Finception"

@@ -87,7 +87,7 @@ export default function Sidebar({
           >
             {/* Full logo - legible "GREAT LAKES GURGAON / FINCEPTION" text, shown whenever there's room. */}
             <span
-              className={`inline-flex w-fit shrink-0 items-center justify-center rounded-md bg-white px-2 py-1.5 ${
+              className={`inline-flex w-fit shrink-0 items-center justify-center rounded-md px-2 py-1.5 ${
                 collapsed ? "lg:hidden" : ""
               }`}
             >
@@ -102,7 +102,7 @@ export default function Sidebar({
             </span>
             {/* Compact icon-only mark for the collapsed rail, where the full wordmark won't fit. */}
             <span
-              className={`hidden h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white p-1 ${
+              className={`hidden h-9 w-9 shrink-0 items-center justify-center rounded-md p-1 ${
                 collapsed ? "lg:inline-flex" : ""
               }`}
             >

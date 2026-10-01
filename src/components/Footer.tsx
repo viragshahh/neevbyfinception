@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <span className="inline-flex items-center rounded-md bg-white px-3 py-2.5">
+            <span className="inline-flex items-center rounded-md px-3 py-2.5">
               <Image
                 src="/logo.png"
                 alt="Finception - Great Lakes Institute of Management, Gurgaon"
