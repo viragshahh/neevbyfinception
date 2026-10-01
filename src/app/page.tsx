@@ -132,10 +132,9 @@ export default async function Home() {
               className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-muted"
               style={{ animationDelay: "160ms" }}
             >
-              A research-driven process, built one evidence layer at a time. Finception runs a
-              paper-traded, student-managed model portfolio across five sectors, with the
-              discipline of an equity research desk - transparent theses, logged decisions,
-              and a research base that compounds monthly.
+              NEEV is Finception's student-managed Indian equity investment initiative, built around
+              sector analysis, value-chain assessment, fundamental research, valuation discipline,
+              portfolio risk management and Investment Committee oversight.
             </p>
             <div
               className="animate-fade-up mt-6 flex flex-wrap gap-3 font-mono text-xs text-muted"
@@ -219,7 +218,7 @@ export default async function Home() {
 
           <div className="card mt-4 p-5">
             <h3 className="mb-3 px-1 text-sm font-semibold text-foreground">
-              Fund vs {FUND_CONFIG.benchmarkName} (indexed to 100)
+              Fund vs {FUND_CONFIG.benchmarkName} (indexed to 100; market proxy)
             </h3>
             <PerformanceChart navHistory={navHistory} benchmark={benchmarkCandles} />
           </div>
