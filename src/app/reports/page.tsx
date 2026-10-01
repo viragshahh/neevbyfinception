@@ -18,8 +18,8 @@ export default async function ReportsPage() {
           Research Library
         </h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Sector deep-dives authored by Finception&apos;s research teams, covering the industries
-          that matter most to Indian markets.
+          Published research outputs from NEEV and Finception&apos;s research teams. This library
+          is for completed reports and reviews; ongoing sector work remains under NEEV Research.
         </p>
       </header>
 
