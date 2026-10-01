@@ -63,7 +63,7 @@ export default function LoginPage() {
 
           {!configured ? (
             <div className="mt-8 rounded-md border border-accent/30 bg-accent/5 p-4 text-sm text-muted">
-              Auth isn&apos;t configured yet - set{" "}
+              Auth isn&apos;t configured yet. Set{" "}
               <code className="font-mono text-accent">NEXT_PUBLIC_SUPABASE_ANON_KEY</code> in{" "}
               <code className="font-mono text-accent">.env.local</code> to enable sign in.
             </div>
