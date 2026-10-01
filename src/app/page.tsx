@@ -12,7 +12,6 @@ import {
   IconSearch,
   IconSprout,
 } from "@/components/icons/FinanceIcons";
-import { listAllIndustryContent } from "@/lib/portfolio-db";
 import { getChart, getQuotes } from "@/lib/yahoo";
 import { getNavTimeline } from "@/lib/google-sheet-nav";
 import { getDecisions, getHoldings } from "@/lib/google-sheet-portfolio";
@@ -77,11 +76,7 @@ const STATS = [
 ];
 
 export default async function Home() {
-  const [holdings, decisions, industryContent] = await Promise.all([
-    getHoldings(),
-    getDecisions(),
-    listAllIndustryContent(),
-  ]);
+  const [holdings, decisions] = await Promise.all([getHoldings(), getDecisions()]);
 
   const activeHoldings = holdings.filter((h) => h.status === "active");
   const symbols = activeHoldings.map((h) => h.symbol);
