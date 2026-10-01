@@ -40,8 +40,9 @@ export default function IndustriesPage() {
           Research is being developed
         </h2>
         <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-muted">
-          Industry research and investment reports will be added as each sector is completed.
-          Check back regularly for new coverage.
+          Sector analysis, value-chain work, company research and valuation work will be added
+          as they are completed and suitable for publication. Finalized reports are available in
+          the Research Library.
         </p>
       </div>
     </div>
