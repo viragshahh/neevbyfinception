@@ -16,7 +16,7 @@ export default function IndustriesPage() {
           NEEV Research
         </h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Ongoing sector research supporting NEEV's long-term Indian equity investment process.
+          Ongoing sector research supporting NEEV's long term Indian equity investment process.
           Coverage will deepen as research is completed and reviewed.
         </p>
       </header>
@@ -40,7 +40,7 @@ export default function IndustriesPage() {
           Research is being developed
         </h2>
         <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-muted">
-          Sector analysis, value-chain work, company research and valuation work will be added
+          Sector analysis, value chain work, company research and valuation work will be added
           as they are completed and suitable for publication. Finalized reports are available in
           the Research Library.
         </p>
