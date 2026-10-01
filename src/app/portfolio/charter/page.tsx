@@ -31,7 +31,6 @@ function LimitCard({
   label: string;
   current: string;
   limit: string;
-  limitLabel: string;
   detail?: string;
   breach: boolean;
 }) {
