@@ -66,7 +66,7 @@ export interface FundBreakdown {
 
 /**
  * Live snapshot of the fund against the Fund Charter's own position and
- * concentration limits (max 10% per stock, max 30% per sector, min 5% cash),
+ * concentration limits (max 10% per stock, max 30% per sector, 0–5% cash),
  * computed straight from current holdings + market quotes - the same live
  * numbers behind Current NAV, just broken down by stock and sector.
  */
