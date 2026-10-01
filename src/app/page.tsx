@@ -312,7 +312,7 @@ export default async function Home() {
                   <span className="w-32 shrink-0 truncate font-medium text-foreground">
                     {d.companyName ?? d.sector}
                   </span>
-                  <span className="min-w-[200px] flex-1 text-muted">{d.rationale}</span>
+                  <span className="min-w-0 sm:min-w-[200px] flex-1 text-muted break-words">{d.rationale}</span>
                   {d.voteCount && <span className="shrink-0 font-mono text-xs text-muted">{d.voteCount}</span>}
                 </div>
               ))}

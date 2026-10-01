@@ -68,14 +68,14 @@ export default function Sidebar({
     <>
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity lg:hidden"
           onClick={onCloseMobile}
           aria-hidden="true"
         />
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex h-full w-64 flex-col overflow-hidden border-r border-border bg-background transition-transform duration-200 ${
+        className={`fixed inset-y-0 left-0 z-50 flex h-full w-64 max-w-[78vw] flex-col overflow-hidden border-r border-border bg-background shadow-2xl transition-transform duration-200 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
         } lg:translate-x-0 lg:pointer-events-auto ${collapsed ? "lg:w-[76px]" : "lg:w-64"}`}
       >

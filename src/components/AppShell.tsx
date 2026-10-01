@@ -11,7 +11,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="flex min-h-full">
+    <div className="relative min-h-full w-full overflow-x-clip">
       <Sidebar
         collapsed={collapsed}
         onToggleCollapse={() => setCollapsed((v) => !v)}
@@ -20,8 +20,8 @@ export default function AppShell({ children }: { children: ReactNode }) {
       />
 
       <div
-        className={`flex min-h-full w-full flex-1 flex-col transition-[margin] duration-200 ${
-          collapsed ? "lg:ml-[76px]" : "lg:ml-64"
+        className={`flex min-h-full w-full min-w-0 flex-1 flex-col transition-[padding] duration-200 ${
+          collapsed ? "lg:pl-[76px]" : "lg:pl-64"
         }`}
       >
         <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-background/90 px-4 py-3 backdrop-blur lg:hidden">

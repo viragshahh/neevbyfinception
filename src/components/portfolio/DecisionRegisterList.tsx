@@ -49,7 +49,7 @@ export default function DecisionRegisterList({ decisions }: { decisions: Decisio
               >
                 {d.decision}
               </span>
-              <div className="min-w-[160px] flex-1">
+              <div className="min-w-0 sm:min-w-[160px] flex-1 break-words">
                 <p className="font-medium text-foreground">
                   {d.companyName ?? d.sector}
                   {d.symbol && <span className="ml-2 font-mono text-xs text-muted">{d.symbol}</span>}
