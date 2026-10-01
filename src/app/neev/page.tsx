@@ -34,11 +34,11 @@ export default function NeevPage() {
       <header className="mb-10">
         <p className="font-label text-[11px] text-accent">FINCEPTION INITIATIVE</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-          Neev <span className="text-muted">by Finception — Outreach</span>
+          Neev <span className="text-muted">by Finception Outreach</span>
         </h1>
         <p className="mt-3 max-w-2xl text-muted">
           This page describes Finception&apos;s financial literacy outreach initiative. It is separate from
-          NEEV, the student-managed Indian equity investment initiative governed by the NEEV Fund Charter.
+          NEEV, the student managed Indian equity investment initiative governed by the NEEV Fund Charter.
         </p>
       </header>
 
