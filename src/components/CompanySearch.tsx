@@ -115,8 +115,9 @@ export default function CompanySearch() {
           </div>
           <div className="card p-4">
             <h2 className="mb-3 px-1 text-sm font-semibold text-foreground">
-              Technical Analysis
+              Technical Snapshot
             </h2>
+            <p className="mb-3 px-1 text-xs leading-5 text-muted">Market indicators are informational only and are not NEEV investment recommendations.</p>
             <TechnicalsCard symbol={symbol} />
           </div>
         </div>
