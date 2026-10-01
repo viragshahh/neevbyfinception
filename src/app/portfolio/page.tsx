@@ -79,7 +79,7 @@ export default async function PortfolioPage() {
 
       <section className="mb-10 card p-5">
         <h2 className="mb-3 px-1 text-sm font-semibold text-foreground">
-          Fund vs {FUND_CONFIG.benchmarkName} (indexed to 100)
+          Fund vs {FUND_CONFIG.benchmarkName} (indexed to 100; market proxy)
         </h2>
         <PerformanceChart navHistory={navHistory} benchmark={benchmarkCandles} />
       </section>
