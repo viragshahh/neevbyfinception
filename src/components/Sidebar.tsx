@@ -45,8 +45,8 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: "About",
-    links: [{ href: "/neev", label: "Neev", icon: IconSprout }],
+    label: "Finception",
+    links: [{ href: "/neev", label: "Outreach: Neev", icon: IconSprout }],
   },
 ];
 
