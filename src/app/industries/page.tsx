@@ -3,8 +3,8 @@ import Link from "next/link";
 import { SECTORS } from "@/lib/sectors";
 
 export const metadata: Metadata = {
-  title: "Industry Coverage | Finception",
-  description: "Finception's ongoing sector research across the five mandated industries.",
+  title: "NEEV Research | Finception",
+  description: "NEEV's ongoing research coverage across its five mandated sectors.",
 };
 
 export default function IndustriesPage() {
