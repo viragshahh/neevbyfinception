@@ -38,17 +38,10 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: "Research",
+    label: "Research & Library",
     links: [
       { href: "/industries", label: "NEEV Research", icon: IconCompass },
-      { href: "/reports", label: "Research Library", icon: IconReports },
-    ],
-  },
-  {
-    label: "Reports",
-    links: [
-      { href: "/disclosures", label: "Reports & Disclosures", icon: IconReports },
-      { href: "/methodology", label: "Methodology", icon: IconShield },
+      { href: "/reports", label: "NEEV Library", icon: IconReports },
     ],
   },
   {
