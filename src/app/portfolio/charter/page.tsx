@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getHoldings } from "@/lib/google-sheet-portfolio";
 import { getQuotes } from "@/lib/yahoo";
-import { computeFundBreakdown } from "@/lib/fund-engine";
+import { computeCharterStatus, computeFundBreakdown } from "@/lib/fund-engine";
 import { FUND_CONFIG } from "@/lib/sectors";
 import { formatCompact } from "@/lib/format";
 
@@ -12,7 +12,7 @@ function weightPct(value: number): string {
 }
 
 export const metadata: Metadata = {
-  title: "Fund Charter | Finception",
+  title: "Fund Charter",
   description:
     "The governing investment mandate for NEEV: objective, universe, investment philosophy, process, portfolio construction, risk management, governance and performance measurement.",
 };
@@ -63,6 +63,7 @@ export default async function FundCharterPage() {
   const maxStockLimitPct = FUND_CONFIG.maxSingleStockWeight * 100;
   const maxSectorLimitPct = FUND_CONFIG.maxSingleSectorWeight * 100;
   const maxCashPct = FUND_CONFIG.maxCashBuffer * 100;
+  const charter = computeCharterStatus(breakdown);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
@@ -207,15 +208,15 @@ export default async function FundCharterPage() {
             label="Cash allocation"
             current={weightPct(breakdown.cashPct)}
             limit={`Permitted range: 0–${maxCashPct}%`}
-            detail="Cash is determined by portfolio construction and available opportunities."
-            breach={breakdown.cashPct > maxCashPct}
+            detail={charter.leverage.status === "breach" ? "Negative cash would indicate leverage and is outside the Charter." : "Cash is determined by portfolio construction and available opportunities."}
+            breach={charter.cash.status !== "within" || charter.leverage.status === "breach"}
           />
           <LimitCard
             label="Active holdings"
             current={String(breakdown.activeNames)}
             limit={`Target portfolio size: ${FUND_CONFIG.minNamesAtFullDeployment}–${FUND_CONFIG.maxNamesAtFullDeployment} securities`}
             detail="Position sizes reflect conviction, valuation, downside risk, liquidity and portfolio-level exposure."
-            breach={false}
+            breach={charter.holdings.status === "above"}
           />
         </div>
 
