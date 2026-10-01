@@ -1,7 +1,17 @@
 import { randomUUID } from "crypto";
 import { REPORTS_BUCKET, supabase } from "./supabase";
 
-export type ReportType = "industry_report" | "monthly_review";
+export type ReportType =
+  | "monthly_review"
+  | "industry_report"
+  | "investment_memo"
+  | "performance_report"
+  | "portfolio_review"
+  | "ic_record"
+  | "annual_review"
+  | "methodology"
+  | "disclosure"
+  | "other";
 
 export interface IndustryReport {
   id: string;
@@ -43,7 +53,20 @@ function fromRow(row: ReportRow): IndustryReport {
     fileUrl: row.file_url,
     fileSizeBytes: row.file_size_bytes,
     uploadedAt: row.uploaded_at,
-    type: row.type === "monthly_review" ? "monthly_review" : "industry_report",
+    type: [
+      "monthly_review",
+      "industry_report",
+      "investment_memo",
+      "performance_report",
+      "portfolio_review",
+      "ic_record",
+      "annual_review",
+      "methodology",
+      "disclosure",
+      "other",
+    ].includes(row.type)
+      ? (row.type as ReportType)
+      : "other",
   };
 }
 
