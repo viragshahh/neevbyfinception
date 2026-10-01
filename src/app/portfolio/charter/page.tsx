@@ -78,8 +78,8 @@ export default async function FundCharterPage() {
       <section className="mb-10">
         <h2 className="mb-4 text-xl font-semibold text-foreground">Fund Mandate</h2>
         <div className="card p-6 text-sm leading-relaxed text-muted">
-          NEEV identifies and owns high-quality Indian businesses with sustainable long-term growth
-          potential, purchased at valuations that provide an attractive risk-adjusted return, while
+          NEEV identifies and owns high-quality Indian businesses with sustainable long term growth
+          potential, purchased at valuations that provide an attractive risk adjusted return, while
           maintaining disciplined portfolio construction, risk management and continuous investment review.
         </div>
       </section>
@@ -90,7 +90,7 @@ export default async function FundCharterPage() {
           <div className="card p-5">
             <p className="text-xs text-muted">Objective</p>
             <p className="mt-2 text-sm leading-relaxed text-foreground">
-              Long-term capital appreciation through fundamentally strong Indian businesses at
+              Long term capital appreciation through fundamentally strong Indian businesses at
               attractive valuations, with a 3–5 year investment horizon.
             </p>
           </div>
@@ -106,7 +106,7 @@ export default async function FundCharterPage() {
             <p className="text-xs text-muted">Universe</p>
             <p className="mt-2 text-sm leading-relaxed text-foreground">
               Equity and equity-related securities of companies listed in India, primarily on NSE
-              and BSE, across large-cap, mid-cap and small-cap segments.
+              and BSE, across large cap, mid cap and small cap segments.
             </p>
           </div>
           <div className="card p-5">
@@ -126,10 +126,10 @@ export default async function FundCharterPage() {
             "Sustainable competitive advantages",
             "Strong and consistent financial performance",
             "Attractive returns on capital",
-            "Healthy cash-flow generation",
+            "Healthy cash flow generation",
             "Prudent capital allocation",
             "Sound corporate governance",
-            "Sustainable long-term growth opportunities",
+            "Sustainable long term growth opportunities",
             "Business quality and valuation considered together",
           ].map((item) => (
             <div key={item} className="flex gap-2 text-sm text-muted">
@@ -139,7 +139,7 @@ export default async function FundCharterPage() {
         </div>
         <p className="mt-3 text-sm text-muted">
           A high-quality business is not considered investable solely because of its fundamentals;
-          the market price must provide an attractive risk-adjusted return.
+          the market price must provide an attractive risk adjusted return.
         </p>
       </section>
 
@@ -149,7 +149,7 @@ export default async function FundCharterPage() {
           <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-foreground">
             {[
               "Sector Analysis",
-              "Value-Chain Analysis",
+              "Value Chain Analysis",
               "Company Screening",
               "Fundamental Research",
               "Valuation",
@@ -169,7 +169,7 @@ export default async function FundCharterPage() {
           </p>
           <p className="mt-2 text-sm text-muted">
             Appropriate valuation methods may include DCF, P/E, EV/EBITDA, P/B, Residual Income
-            and Sum-of-the-Parts. Major investment decisions incorporate Bear, Base and Bull cases.
+            and Sum of the Parts. Major investment decisions incorporate Bear, Base and Bull cases.
           </p>
         </div>
       </section>
@@ -315,7 +315,7 @@ export default async function FundCharterPage() {
             "Fundamentals over speculation.",
             "Valuation matters.",
             "Capital preservation is paramount.",
-            "Long-term thinking over short-term market movements.",
+            "Long term thinking over short-term market movements.",
             "Disciplined diversification over excessive concentration.",
             "Continuous monitoring and accountability.",
             "Evidence-based decisions over emotion.",
