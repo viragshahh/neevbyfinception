@@ -79,18 +79,14 @@ export default function Sidebar({
           mobileOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
         } lg:translate-x-0 lg:pointer-events-auto ${collapsed ? "lg:w-[76px]" : "lg:w-64"}`}
       >
-        <div className="flex items-center justify-between gap-2 border-b border-border px-4 py-4">
+        <div className={`flex items-center gap-2 border-b border-border px-4 py-4 ${collapsed ? "justify-center" : "justify-between"}`}>
           <Link
             href="/"
             onClick={onCloseMobile}
-            className="flex min-w-0 shrink flex-col gap-1.5"
+            className={`flex min-w-0 shrink flex-col gap-1.5 ${collapsed ? "lg:hidden" : ""}`}
           >
             {/* Full logo - legible "GREAT LAKES GURGAON / FINCEPTION" text, shown whenever there's room. */}
-            <span
-              className={`inline-flex w-fit shrink-0 items-center justify-center rounded-md px-2 py-1.5 ${
-                collapsed ? "lg:hidden" : ""
-              }`}
-            >
+            <span className="inline-flex w-fit shrink-0 items-center justify-center rounded-md px-2 py-1.5">
               <Image
                 src="/logo.png"
                 alt="Great Lakes Institute of Management, Gurgaon - Finception"
@@ -100,23 +96,7 @@ export default function Sidebar({
                 className="h-10 w-auto"
               />
             </span>
-            {/* Compact icon-only mark for the collapsed rail, where the full wordmark won't fit. */}
-            <span
-              className={`hidden h-9 w-9 shrink-0 items-center justify-center rounded-md p-1 ${
-                collapsed ? "lg:inline-flex" : ""
-              }`}
-            >
-              <Image
-                src="/logo-icon.png"
-                alt="Great Lakes Institute of Management, Gurgaon"
-                width={480}
-                height={480}
-                className="h-full w-full object-contain"
-              />
-            </span>
-            <span
-              className={`font-label truncate text-[9px] text-muted ${collapsed ? "lg:hidden" : ""}`}
-            >
+            <span className="font-label truncate text-[9px] text-muted">
               Neev by FINception
             </span>
           </Link>
