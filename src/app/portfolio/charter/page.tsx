@@ -25,7 +25,6 @@ function LimitCard({
   label,
   current,
   limit,
-  limitLabel,
   detail,
   breach,
 }: {
@@ -40,7 +39,7 @@ function LimitCard({
     <div className="card p-5">
       <p className="text-xs text-muted">{label}</p>
       <p className={`mt-1 text-2xl font-bold ${breach ? "text-down" : "text-foreground"}`}>{current}</p>
-      <p className="mt-1 text-xs text-muted">{limitLabel}: {limit}</p>
+      <p className="mt-1 text-xs text-muted">{limit}</p>
       {detail && <p className="mt-2 text-xs text-muted">{detail}</p>}
       <span
         className={`mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider ${
