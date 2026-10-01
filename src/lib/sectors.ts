@@ -78,13 +78,15 @@ export const REPORT_SECTOR_OPTIONS = SECTORS.map((s) => s.name);
 
 export const FUND_CONFIG = {
   notionalAum: 1_000_000,
-  benchmarkName: "Nifty 500",
+  benchmarkName: "Nifty 500 TRI",
   benchmarkSymbol: "^CRSLDX",
   cycleLabel: "Aug 2026 - Mar 2027",
   cycleStartDate: "2026-08-01",
+  maxInitialPositionWeight: 0.08,
   maxSingleStockWeight: 0.1,
   maxSingleSectorWeight: 0.3,
-  minCashBuffer: 0.05,
+  minCashBuffer: 0,
+  maxCashBuffer: 0.05,
   minNamesAtFullDeployment: 15,
-  maxNamesAtFullDeployment: 20,
+  maxNamesAtFullDeployment: 25,
 };
