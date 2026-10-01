@@ -24,62 +24,30 @@ export interface Layer {
 
 export const LAYERS: Layer[] = [
   { key: "overview", label: "Overview", month: "Aug", question: "Should we invest in this industry?" },
-  {
-    key: "valueChain",
-    label: "Value Chain",
-    month: "Sep",
-    question: "Where in the value chain should we invest?",
-  },
-  {
-    key: "businessModel",
-    label: "Business Model",
-    month: "Oct",
-    question: "Which business model deserves our capital?",
-  },
-  {
-    key: "financialDashboard",
-    label: "Financial Dashboard",
-    month: "Nov",
-    question: "Which companies generate superior returns?",
-  },
-  {
-    key: "valuationDashboard",
-    label: "Valuation Dashboard",
-    month: "Dec",
-    question: "Which companies are undervalued today?",
-  },
-  {
-    key: "governanceEsg",
-    label: "Governance & ESG",
-    month: "Jan",
-    question: "Can management be trusted with capital?",
-  },
-  {
-    key: "growthRisk",
-    label: "Growth & Risk",
-    month: "Feb",
-    question: "What will drive returns over 3-5 years?",
-  },
-  {
-    key: "annualReview",
-    label: "Annual Review",
-    month: "Mar",
-    question: "Did our process outperform the market?",
-  },
+  { key: "valueChain", label: "Value Chain", month: "Sep", question: "Where in the value chain should we invest?" },
+  { key: "businessModel", label: "Business Model", month: "Oct", question: "Which business model deserves our capital?" },
+  { key: "financialDashboard", label: "Financial Dashboard", month: "Nov", question: "Which companies generate superior returns?" },
+  { key: "valuationDashboard", label: "Valuation Dashboard", month: "Dec", question: "Which companies are undervalued today?" },
+  { key: "governanceEsg", label: "Governance & ESG", month: "Jan", question: "Can management be trusted with capital?" },
+  { key: "growthRisk", label: "Growth & Risk", month: "Feb", question: "What will drive returns over 3-5 years?" },
+  { key: "annualReview", label: "Annual Review", month: "Mar", question: "Did our process outperform the market?" },
 ];
 
 export function getLayer(key: string): Layer | undefined {
   return LAYERS.find((l) => l.key === key);
 }
 
-// Reports are only ever tagged to one of the 5 mandated sectors - keeps the
-// /reports filter buttons meaningful for every report uploaded going forward.
 export const REPORT_SECTOR_OPTIONS = SECTORS.map((s) => s.name);
 
 export const FUND_CONFIG = {
+  fundName: "NEEV",
+  fundLongName: "New-age Equity Evaluation & Valuation",
+  sponsorName: "Finception",
+  institutionName: "Great Lakes Institute of Management, Gurgaon",
   notionalAum: 1_000_000,
+  currency: "INR",
   benchmarkName: "Nifty 500 TRI",
-  benchmarkSymbol: "^CRSLDX",
+  benchmarkSymbol: null as string | null,
   cycleLabel: "Aug 2026 - Mar 2027",
   cycleStartDate: "2026-08-01",
   maxInitialPositionWeight: 0.08,
@@ -89,4 +57,5 @@ export const FUND_CONFIG = {
   maxCashBuffer: 0.05,
   minNamesAtFullDeployment: 15,
   maxNamesAtFullDeployment: 25,
+  horizonLabel: "3–5 years",
 };
