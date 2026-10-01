@@ -3,8 +3,8 @@ import ReportsGrid from "@/components/ReportsGrid";
 import { listReports } from "@/lib/reports-db";
 
 export const metadata: Metadata = {
-  title: "Industry Reports | Finception",
-  description: "Sector research reports published by Finception, the Finance Club of GLIM Gurgaon.",
+  title: "Research Library | Finception",
+  description: "Published NEEV and Finception sector research reports and investment reviews.",
 };
 
 export default async function ReportsPage() {
