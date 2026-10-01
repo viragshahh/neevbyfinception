@@ -37,7 +37,7 @@ export default function IndustriesPage() {
 
       <div className="mt-8 card p-8 text-center">
         <h2 className="text-xl font-semibold text-foreground">
-          Research will be published here
+          Research is being developed
         </h2>
         <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-muted">
           Industry research and investment reports will be added as each sector is completed.
