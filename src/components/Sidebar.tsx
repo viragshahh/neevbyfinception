@@ -25,7 +25,7 @@ const NAV_GROUPS = [
     label: "Fund",
     links: [
       { href: "/portfolio", label: "Portfolio", icon: IconPortfolio },
-      { href: "/portfolio/register", label: "Decision Register", icon: IconBuilding },
+      { href: "/portfolio/register", label: "IC Decision Register", icon: IconBuilding },
       { href: "/portfolio/charter", label: "Fund Charter", icon: IconShield },
     ],
   },
