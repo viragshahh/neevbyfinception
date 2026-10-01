@@ -20,8 +20,7 @@ export default function Footer() {
               />
             </span>
             <p className="mt-4 max-w-xs text-sm text-muted">
-              The official Finance Club of Great Lakes Institute of Management, Gurgaon  - 
-              running a student managed investment fund with the discipline of an equity research
+              The official Finance Club of Great Lakes Institute of Management, Gurgaon, running a student managed investment fund with the discipline of an equity research
               desk.
             </p>
             <div className="mt-5 flex items-center gap-3">
