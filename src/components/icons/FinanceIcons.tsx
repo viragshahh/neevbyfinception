@@ -121,7 +121,7 @@ export function IconInstagram({ className }: IconProps) {
   );
 }
 
-/** Abstract candlestick + trendline hero illustration — no external assets. */
+/** Abstract candlestick + trendline hero illustration - no external assets. */
 export function HeroChartIllustration({ className }: IconProps) {
   return (
     <svg viewBox="0 0 480 320" fill="none" className={className}>

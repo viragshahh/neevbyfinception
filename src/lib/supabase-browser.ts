@@ -11,6 +11,6 @@ if (supabaseUrl && supabaseAnonKey) {
   client = createClient(supabaseUrl, supabaseAnonKey);
 }
 
-// Null when NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY aren't set —
+// Null when NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY aren't set -
 // callers must handle that (see auth-context.tsx) rather than assume auth is configured.
 export const supabaseBrowser = client;

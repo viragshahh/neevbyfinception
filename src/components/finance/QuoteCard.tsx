@@ -14,13 +14,13 @@ export default function QuoteCard({ symbol }: { symbol: string }) {
   const stats: [string, string][] = [
     ["Open", formatPrice(q.open, q.currency)],
     ["Prev. Close", formatPrice(q.previousClose, q.currency)],
-    ["Day Range", `${formatPrice(q.dayLow, q.currency)} – ${formatPrice(q.dayHigh, q.currency)}`],
+    ["Day Range", `${formatPrice(q.dayLow, q.currency)} - ${formatPrice(q.dayHigh, q.currency)}`],
     [
       "52W Range",
-      `${formatPrice(q.fiftyTwoWeekLow, q.currency)} – ${formatPrice(q.fiftyTwoWeekHigh, q.currency)}`,
+      `${formatPrice(q.fiftyTwoWeekLow, q.currency)} - ${formatPrice(q.fiftyTwoWeekHigh, q.currency)}`,
     ],
     ["Volume", formatNumber(q.volume)],
-    ["Market Cap", q.marketCap ? formatCompact(q.marketCap) : "—"],
+    ["Market Cap", q.marketCap ? formatCompact(q.marketCap) : "-"],
   ];
 
   return (

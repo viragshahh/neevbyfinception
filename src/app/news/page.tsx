@@ -29,7 +29,7 @@ export default async function NewsPage() {
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Finance News</h1>
         <p className="mt-3 max-w-2xl text-muted">
           Live, continuously updating market-moving headlines from across Indian and global
-          markets &mdash; read right here.
+          markets - read right here.
         </p>
       </header>
 

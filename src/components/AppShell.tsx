@@ -39,13 +39,13 @@ export default function AppShell({ children }: { children: ReactNode }) {
             <span className="inline-flex shrink-0 items-center justify-center rounded-md bg-white px-1.5 py-1">
               <Image
                 src="/logo.png"
-                alt="Great Lakes Institute of Management, Gurgaon — Finception"
+                alt="Great Lakes Institute of Management, Gurgaon - Finception"
                 width={876}
                 height={412}
                 className="h-7 w-auto"
               />
             </span>
-            <span className="font-label truncate text-[10px] text-muted">Neev &ndash; by FINception</span>
+            <span className="font-label truncate text-[10px] text-muted">Neev by FINception</span>
           </Link>
         </header>
 

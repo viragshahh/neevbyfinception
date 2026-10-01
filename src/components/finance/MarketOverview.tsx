@@ -37,7 +37,7 @@ export default function MarketOverview() {
                   </p>
                 </>
               ) : (
-                <p className="text-xs text-muted">{loading ? "Loading…" : "—"}</p>
+                <p className="text-xs text-muted">{loading ? "Loading…" : "-"}</p>
               )}
             </div>
           </div>

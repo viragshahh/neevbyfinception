@@ -142,7 +142,7 @@ export default function IndustryContentAdminPanel({ passcode }: { passcode: stri
             >
               {LAYERS.map((l) => (
                 <option key={l.key} value={l.key}>
-                  {l.month} &mdash; {l.label}
+                  {l.month} - {l.label}
                 </option>
               ))}
             </select>

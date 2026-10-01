@@ -20,7 +20,7 @@ export default async function DecisionRegisterPage() {
         <p className="font-label text-[11px] text-accent">STUDENT MANAGED FUND</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Decision Register</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Every Investment Committee decision, logged with date, rationale and vote count &mdash;
+          Every Investment Committee decision, logged with date, rationale and vote count  - 
           the primary input to the annual performance attribution.
         </p>
       </header>

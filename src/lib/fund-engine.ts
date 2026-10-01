@@ -3,7 +3,7 @@ import type { QuoteData } from "./finance-types";
 import { FUND_CONFIG } from "./sectors";
 
 /**
- * Live fund value, computed straight from holdings + current quotes — no manual NAV
+ * Live fund value, computed straight from holdings + current quotes - no manual NAV
  * entry required. Adding, exiting, or repricing a holding changes this number on the
  * next render. Cash = notional AUM minus what's tied up in active positions plus
  * proceeds already banked from exited ones; total value = cash + current market
@@ -67,7 +67,7 @@ export interface FundBreakdown {
 /**
  * Live snapshot of the fund against the Fund Charter's own position and
  * concentration limits (max 10% per stock, max 30% per sector, min 5% cash),
- * computed straight from current holdings + market quotes — the same live
+ * computed straight from current holdings + market quotes - the same live
  * numbers behind Current NAV, just broken down by stock and sector.
  */
 export function computeFundBreakdown(holdings: Holding[], quotes: QuoteData[]): FundBreakdown {

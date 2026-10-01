@@ -11,17 +11,17 @@ export default function FinancialsCard({ symbol }: { symbol: string }) {
   if (!financials) return <p className="text-sm text-muted">No financial data available.</p>;
 
   const rows: [string, string][] = [
-    ["Market Cap", financials.marketCap ? formatCompact(financials.marketCap) : "—"],
-    ["Revenue (TTM)", financials.revenue ? formatCompact(financials.revenue) : "—"],
+    ["Market Cap", financials.marketCap ? formatCompact(financials.marketCap) : "-"],
+    ["Revenue (TTM)", financials.revenue ? formatCompact(financials.revenue) : "-"],
     ["Revenue Growth", formatPercent(financials.revenueGrowth)],
     ["Profit Margin", formatPercent(financials.profitMargin)],
     ["Return on Equity", formatPercent(financials.returnOnEquity)],
-    ["EPS (TTM)", financials.eps !== null ? financials.eps.toFixed(2) : "—"],
-    ["P/E Ratio", financials.peRatio !== null ? financials.peRatio.toFixed(2) : "—"],
-    ["Forward P/E", financials.forwardPE !== null ? financials.forwardPE.toFixed(2) : "—"],
+    ["EPS (TTM)", financials.eps !== null ? financials.eps.toFixed(2) : "-"],
+    ["P/E Ratio", financials.peRatio !== null ? financials.peRatio.toFixed(2) : "-"],
+    ["Forward P/E", financials.forwardPE !== null ? financials.forwardPE.toFixed(2) : "-"],
     ["Dividend Yield", formatPercent(financials.dividendYield)],
-    ["Debt / Equity", financials.debtToEquity !== null ? financials.debtToEquity.toFixed(2) : "—"],
-    ["Beta", financials.beta !== null ? financials.beta.toFixed(2) : "—"],
+    ["Debt / Equity", financials.debtToEquity !== null ? financials.debtToEquity.toFixed(2) : "-"],
+    ["Beta", financials.beta !== null ? financials.beta.toFixed(2) : "-"],
   ];
 
   return (

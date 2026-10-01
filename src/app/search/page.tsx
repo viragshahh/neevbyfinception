@@ -13,7 +13,7 @@ export default function SearchPage() {
         <p className="font-label text-[11px] text-accent">RESEARCH</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Company Search</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Search any listed company by name &mdash; Indian or global &mdash; to view its live
+          Search any listed company by name - Indian or global - to view its live
           chart, company profile, technicals and financial statements.
         </p>
       </header>

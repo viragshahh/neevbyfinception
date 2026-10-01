@@ -61,7 +61,7 @@ export function findColumn(header: string[], ...keywords: string[]): number {
 }
 
 /**
- * Like findColumn, but skips any header that also contains one of `exclude` —
+ * Like findColumn, but skips any header that also contains one of `exclude` -
  * e.g. matching a bare "cost" keyword while refusing "Cost Basis" (a *total*,
  * not a per-share figure) so it doesn't get mistaken for the per-share cost.
  */
@@ -71,8 +71,8 @@ export function findColumnExcluding(header: string[], keyword: string, exclude: 
 }
 
 /**
- * Scans the first several rows for the real header row — i.e. the one that
- * satisfies at least `minMatches` of the given matcher checks — so a sheet
+ * Scans the first several rows for the real header row - i.e. the one that
+ * satisfies at least `minMatches` of the given matcher checks - so a sheet
  * with a title row or blank row above the header still parses correctly.
  * Falls back to row 0 if nothing matches strongly enough.
  */
@@ -88,7 +88,7 @@ export function findHeaderRow(
   return 0;
 }
 
-/** Always fetches the sheet fresh — no caching — so a spreadsheet edit shows up on the very next page load. */
+/** Always fetches the sheet fresh - no caching - so a spreadsheet edit shows up on the very next page load. */
 export async function fetchCsv(url: string): Promise<string[][]> {
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to fetch sheet: ${res.status}`);

@@ -27,27 +27,27 @@ export default function TechnicalsCard({ symbol }: { symbol: string }) {
   const rows: [string, string, boolean | null][] = [
     [
       "SMA 20",
-      summary.sma20 !== null ? summary.sma20.toFixed(2) : "—",
+      summary.sma20 !== null ? summary.sma20.toFixed(2) : "-",
       summary.sma20 !== null ? summary.price > summary.sma20 : null,
     ],
     [
       "SMA 50",
-      summary.sma50 !== null ? summary.sma50.toFixed(2) : "—",
+      summary.sma50 !== null ? summary.sma50.toFixed(2) : "-",
       summary.sma50 !== null ? summary.price > summary.sma50 : null,
     ],
     [
       "SMA 200",
-      summary.sma200 !== null ? summary.sma200.toFixed(2) : "—",
+      summary.sma200 !== null ? summary.sma200.toFixed(2) : "-",
       summary.sma200 !== null ? summary.price > summary.sma200 : null,
     ],
     [
       "RSI (14)",
-      summary.rsi14 !== null ? summary.rsi14.toFixed(1) : "—",
+      summary.rsi14 !== null ? summary.rsi14.toFixed(1) : "-",
       summary.rsi14 !== null ? summary.rsi14 < 50 : null,
     ],
     [
       "MACD Histogram",
-      summary.macd ? summary.macd.histogram.toFixed(2) : "—",
+      summary.macd ? summary.macd.histogram.toFixed(2) : "-",
       summary.macd ? summary.macd.histogram > 0 : null,
     ],
   ];

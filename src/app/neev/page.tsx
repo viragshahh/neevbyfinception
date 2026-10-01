@@ -47,7 +47,7 @@ export default function NeevPage() {
           <h2 className="text-lg font-semibold text-accent">Our Mission</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             To make financial literacy accessible and practical for students, first-time
-            earners and underserved communities &mdash; through simple, jargon-free workshops on
+            earners and underserved communities - through simple, jargon-free workshops on
             budgeting, saving, credit and investing that translate directly into everyday
             financial decisions.
           </p>
@@ -56,7 +56,7 @@ export default function NeevPage() {
           <h2 className="text-lg font-semibold text-accent">Our Vision</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             A community where sound financial decision-making is not a privilege reserved for
-            the few, but a foundational life skill available to everyone &mdash; built one
+            the few, but a foundational life skill available to everyone - built one
             session, one mentee, and one household at a time.
           </p>
         </div>

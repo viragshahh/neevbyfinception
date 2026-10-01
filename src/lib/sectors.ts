@@ -72,7 +72,7 @@ export function getLayer(key: string): Layer | undefined {
   return LAYERS.find((l) => l.key === key);
 }
 
-// Reports are only ever tagged to one of the 5 mandated sectors — keeps the
+// Reports are only ever tagged to one of the 5 mandated sectors - keeps the
 // /reports filter buttons meaningful for every report uploaded going forward.
 export const REPORT_SECTOR_OPTIONS = SECTORS.map((s) => s.name);
 

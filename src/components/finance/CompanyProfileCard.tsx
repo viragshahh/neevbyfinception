@@ -15,11 +15,11 @@ export default function CompanyProfileCard({ symbol }: { symbol: string }) {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <div>
           <p className="text-xs text-muted">Sector</p>
-          <p className="mt-0.5 text-sm text-foreground">{profile.sector ?? "—"}</p>
+          <p className="mt-0.5 text-sm text-foreground">{profile.sector ?? "-"}</p>
         </div>
         <div>
           <p className="text-xs text-muted">Industry</p>
-          <p className="mt-0.5 text-sm text-foreground">{profile.industry ?? "—"}</p>
+          <p className="mt-0.5 text-sm text-foreground">{profile.industry ?? "-"}</p>
         </div>
         <div>
           <p className="text-xs text-muted">Employees</p>
@@ -28,7 +28,7 @@ export default function CompanyProfileCard({ symbol }: { symbol: string }) {
         <div>
           <p className="text-xs text-muted">Headquarters</p>
           <p className="mt-0.5 text-sm text-foreground">
-            {[profile.city, profile.country].filter(Boolean).join(", ") || "—"}
+            {[profile.city, profile.country].filter(Boolean).join(", ") || "-"}
           </p>
         </div>
         {profile.website && (

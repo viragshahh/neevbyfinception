@@ -24,7 +24,7 @@ const AVG_COST_KEYWORDS = [
 /**
  * Finds the per-share cost column, deliberately preferring specific phrasings
  * ("Buy Price", "Avg Cost", ...) before falling back to a bare "cost" keyword
- * — and even then refusing any header that also says "basis" or "total", since
+ * - and even then refusing any header that also says "basis" or "total", since
  * a "Cost Basis" or "Total Cost" column holds the whole position's cost, not
  * the per-share figure, and would otherwise inflate every computed value.
  */
@@ -43,7 +43,7 @@ function todayIso(): string {
  * CSV). Tolerant of real-world sheet quirks: a title/blank row above the real
  * header, column-name synonyms (Ticker/Symbol, Buy Price/Avg Cost, ...), and
  * missing optional columns (Company Name, Entry Date, Status default sensibly).
- * Only Symbol, Sector, Quantity and an avg-cost column must be identifiable —
+ * Only Symbol, Sector, Quantity and an avg-cost column must be identifiable -
  * everything else is best-effort.
  */
 export async function fetchSheetHoldings(csvUrl: string): Promise<Holding[]> {

@@ -8,7 +8,7 @@ const SYMBOLS = [
 ];
 
 /**
- * Ambient decorative backdrop for hero-style sections — drifting glowing currency
+ * Ambient decorative backdrop for hero-style sections - drifting glowing currency
  * symbols. Pure CSS (no images), so it stays lightweight and theme-colored.
  * Purely decorative: pointer-events-none and aria-hidden throughout.
  */

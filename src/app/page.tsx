@@ -64,7 +64,7 @@ const FEATURES = [
     href: "/neev",
     title: "Neev by Finception",
     description:
-      "Our outreach initiative laying the foundation of financial literacy — its mission, vision and impact.",
+      "Our outreach initiative laying the foundation of financial literacy - its mission, vision and impact.",
     icon: IconSprout,
   },
 ];
@@ -140,7 +140,7 @@ export default async function Home() {
             >
               A research-driven process, built one evidence layer at a time. Finception runs a
               paper-traded, student-managed model portfolio across five sectors, with the
-              discipline of an equity research desk &mdash; transparent theses, logged decisions,
+              discipline of an equity research desk - transparent theses, logged decisions,
               and a research base that compounds monthly.
             </p>
             <div
@@ -148,10 +148,10 @@ export default async function Home() {
               style={{ animationDelay: "220ms" }}
             >
               <span className="rounded-md border border-border px-3 py-1.5">
-                Benchmark &mdash; {FUND_CONFIG.benchmarkName}
+                Benchmark: {FUND_CONFIG.benchmarkName}
               </span>
               <span className="rounded-md border border-border px-3 py-1.5">
-                Notional AUM &mdash; {formatCompact(FUND_CONFIG.notionalAum)}
+                Notional AUM: {formatCompact(FUND_CONFIG.notionalAum)}
               </span>
               <span className="rounded-md border border-border px-3 py-1.5">{FUND_CONFIG.cycleLabel}</span>
             </div>
@@ -218,7 +218,7 @@ export default async function Home() {
             <div className="card p-5">
               <p className="text-xs text-muted">Deployed Capital (mkt value)</p>
               <p className="mt-1 text-2xl font-bold text-foreground">
-                {activeHoldings.length > 0 ? formatCompact(totalCurrentValue) : "—"}
+                {activeHoldings.length > 0 ? formatCompact(totalCurrentValue) : "-"}
               </p>
             </div>
           </div>

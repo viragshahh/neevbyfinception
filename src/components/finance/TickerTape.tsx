@@ -32,7 +32,7 @@ export default function TickerTape() {
               </span>
             </>
           ) : (
-            <span className="text-muted">{loading ? "…" : "—"}</span>
+            <span className="text-muted">{loading ? "…" : "-"}</span>
           )}
         </span>
       );

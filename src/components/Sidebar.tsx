@@ -85,7 +85,7 @@ export default function Sidebar({
             onClick={onCloseMobile}
             className="flex min-w-0 shrink flex-col gap-1.5"
           >
-            {/* Full logo — legible "GREAT LAKES GURGAON / FINCEPTION" text, shown whenever there's room. */}
+            {/* Full logo - legible "GREAT LAKES GURGAON / FINCEPTION" text, shown whenever there's room. */}
             <span
               className={`inline-flex w-fit shrink-0 items-center justify-center rounded-md bg-white px-2 py-1.5 ${
                 collapsed ? "lg:hidden" : ""
@@ -93,7 +93,7 @@ export default function Sidebar({
             >
               <Image
                 src="/logo.png"
-                alt="Great Lakes Institute of Management, Gurgaon — Finception"
+                alt="Great Lakes Institute of Management, Gurgaon - Finception"
                 width={876}
                 height={412}
                 priority
@@ -117,7 +117,7 @@ export default function Sidebar({
             <span
               className={`font-label truncate text-[9px] text-muted ${collapsed ? "lg:hidden" : ""}`}
             >
-              Neev &ndash; by FINception
+              Neev by FINception
             </span>
           </Link>
 

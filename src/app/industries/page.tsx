@@ -27,7 +27,7 @@ export default async function IndustriesPage() {
         <p className="font-label text-[11px] text-accent">STUDENT MANAGED FUND</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Industry Coverage</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Each sector builds one permanent research layer per month &mdash; Overview, Value Chain,
+          Each sector builds one permanent research layer per month - Overview, Value Chain,
           Business Model, Financial Dashboard, Valuation, Governance &amp; ESG, Growth &amp; Risk,
           and the Annual Review.
         </p>

@@ -61,7 +61,7 @@ export default function NavAdminPanel({ passcode }: { passcode: string }) {
     <div>
       <div className="mb-6 rounded-md border border-accent/30 bg-accent/5 p-4 text-sm text-muted">
         <span className="font-medium text-foreground">Current NAV is now computed automatically</span>{" "}
-        from live holdings and market quotes &mdash; it updates the moment a position is added,
+        from live holdings and market quotes - it updates the moment a position is added,
         edited, or exited (see <code className="font-mono text-accent">src/lib/fund-engine.ts</code>).
         Entries logged here fill in the historical trend line and are used only when no{" "}
         <code className="font-mono text-accent">FUND_NAV_SHEET_CSV_URL</code> is configured.

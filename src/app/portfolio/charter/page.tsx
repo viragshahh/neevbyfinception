@@ -7,7 +7,7 @@ import { FUND_CONFIG } from "@/lib/sectors";
 import { formatCompact } from "@/lib/format";
 import { IconShield } from "@/components/icons/FinanceIcons";
 
-/** Plain (unsigned) percent for weight/allocation figures — formatPercent's "+" prefix reads as a gain/loss delta, not a share of NAV. */
+/** Plain (unsigned) percent for weight/allocation figures - formatPercent's "+" prefix reads as a gain/loss delta, not a share of NAV. */
 function weightPct(value: number): string {
   return `${value.toFixed(2)}%`;
 }
@@ -15,7 +15,7 @@ function weightPct(value: number): string {
 export const metadata: Metadata = {
   title: "Fund Charter | Finception",
   description:
-    "Finception's Fund Charter — structure, position limits, deployment schedule, risk controls and governance for the student-managed model portfolio.",
+    "Finception's Fund Charter - structure, position limits, deployment schedule, risk controls and governance for the student-managed model portfolio.",
 };
 
 // Live compliance figures depend on current holdings + market quotes, so this
@@ -72,7 +72,7 @@ export default async function FundCharterPage() {
         <p className="font-label text-[11px] text-accent">Student Managed Fund</p>
         <h1 className="font-display mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Fund Charter</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          The operating and risk rules behind every portfolio decision &mdash; so each one is
+          The operating and risk rules behind every portfolio decision - so each one is
           auditable against a written standard rather than discretionary.
         </p>
       </header>
@@ -84,7 +84,7 @@ export default async function FundCharterPage() {
           <div>
             <p className="text-xs text-muted">Vehicle</p>
             <p className="mt-1 text-sm text-foreground">
-              Paper/simulated portfolio (notional AUM) &mdash; no real capital deployed unless
+              Paper/simulated portfolio (notional AUM) - no real capital deployed unless
               separately approved by the faculty mentor and institute administration.
             </p>
           </div>
@@ -95,7 +95,7 @@ export default async function FundCharterPage() {
           <div>
             <p className="text-xs text-muted">Benchmark</p>
             <p className="mt-1 text-sm text-foreground">
-              {FUND_CONFIG.benchmarkName} &mdash; fixed for the full 8-month cycle
+              {FUND_CONFIG.benchmarkName} - fixed for the full 8-month cycle
             </p>
           </div>
           <div>
@@ -114,7 +114,7 @@ export default async function FundCharterPage() {
           <h2 className="text-xl font-semibold text-foreground">Position &amp; Concentration Limits</h2>
         </div>
         <p className="mb-4 text-sm text-muted">
-          Checked live against current holdings and market prices &mdash; the same figures behind
+          Checked live against current holdings and market prices - the same figures behind
           the fund&apos;s Current NAV.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -144,9 +144,9 @@ export default async function FundCharterPage() {
           <LimitCard
             label="Active names"
             current={String(breakdown.activeNames)}
-            limit={`${FUND_CONFIG.minNamesAtFullDeployment}–${FUND_CONFIG.maxNamesAtFullDeployment} at full deployment`}
+            limit={`${FUND_CONFIG.minNamesAtFullDeployment} to ${FUND_CONFIG.maxNamesAtFullDeployment} at full deployment`}
             limitLabel="Target"
-            detail="3–4 per industry once fully constructed (from September)"
+            detail="3 to 4 per industry once fully constructed (from September)"
             breach={false}
           />
         </div>
@@ -190,9 +190,9 @@ export default async function FundCharterPage() {
             </p>
           </div>
           <div className="px-4 py-3 text-sm">
-            <span className="font-mono text-xs text-accent">October &ndash; February</span>
+            <span className="font-mono text-xs text-accent">October to February</span>
             <p className="mt-1 text-muted">
-              Rebalancing only (no new net capital deployment) &mdash; driven by each month&apos;s
+              Rebalancing only (no new net capital deployment) - driven by each month&apos;s
               incremental evidence layer.
             </p>
           </div>
@@ -208,7 +208,7 @@ export default async function FundCharterPage() {
             coverage, is automatically tabled for Investment Committee review.
           </p>
           <p className="mt-3">
-            No leverage, no derivatives, no short positions &mdash; long-only cash equity mandate for
+            No leverage, no derivatives, no short positions - long-only cash equity mandate for
             the full cycle.
           </p>
         </div>
@@ -223,7 +223,7 @@ export default async function FundCharterPage() {
             <Link href="/portfolio/register" className="text-accent hover:underline">
               Decision Register
             </Link>
-            : date, stock/sector, rationale, vote count, and dissenting views (if any) &mdash; the
+            : date, stock/sector, rationale, vote count, and dissenting views (if any) - the
             primary input to the March performance attribution.
           </p>
         </div>
@@ -253,7 +253,7 @@ export default async function FundCharterPage() {
         <h2 className="mb-4 text-xl font-semibold text-foreground">Continuity</h2>
         <div className="card p-5 text-sm text-muted">
           <p>
-            A one-page handoff memo &mdash; portfolio state, open theses, lessons learned &mdash; is
+            A one-page handoff memo - portfolio state, open theses, lessons learned - is
             prepared by the outgoing Core Committee in March for the incoming batch.
           </p>
           <p className="mt-3">

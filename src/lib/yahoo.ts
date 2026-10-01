@@ -41,7 +41,7 @@ function toQuoteData(q: object): QuoteData {
   };
 }
 
-// Quotes/charts are cached briefly (30s) — plenty fresh for display purposes,
+// Quotes/charts are cached briefly (30s) - plenty fresh for display purposes,
 // but it means back-to-back page loads (or several visitors at once) reuse the
 // same live Yahoo fetch instead of each one blocking on its own round trip.
 export const getQuotes = unstable_cache(

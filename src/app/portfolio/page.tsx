@@ -56,15 +56,15 @@ export default async function PortfolioPage() {
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Portfolio</h1>
         <p className="mt-3 max-w-2xl text-muted">
           A paper-traded, student-managed model portfolio across five sectors, run with the
-          discipline of an equity research desk &mdash; transparent theses, logged decisions, and a
+          discipline of an equity research desk - transparent theses, logged decisions, and a
           research base that compounds monthly.
         </p>
         <div className="mt-4 flex flex-wrap gap-3 font-mono text-xs text-muted">
           <span className="rounded-md border border-border px-3 py-1.5">
-            Benchmark &mdash; {FUND_CONFIG.benchmarkName}
+            Benchmark: {FUND_CONFIG.benchmarkName}
           </span>
           <span className="rounded-md border border-border px-3 py-1.5">
-            Notional AUM &mdash; {formatCompact(FUND_CONFIG.notionalAum)}
+            Notional AUM: {formatCompact(FUND_CONFIG.notionalAum)}
           </span>
           <span className="rounded-md border border-border px-3 py-1.5">{FUND_CONFIG.cycleLabel}</span>
         </div>
@@ -84,7 +84,7 @@ export default async function PortfolioPage() {
         <div className="card p-5">
           <p className="text-xs text-muted">Deployed Capital (mkt value)</p>
           <p className="mt-1 text-2xl font-bold text-foreground">
-            {activeHoldings.length > 0 ? formatCompact(totalCurrentValue) : "—"}
+            {activeHoldings.length > 0 ? formatCompact(totalCurrentValue) : "-"}
           </p>
         </div>
       </section>
@@ -157,14 +157,14 @@ export default async function PortfolioPage() {
                     <td className="px-4 py-3 text-muted">{h.sector}</td>
                     <td className="px-4 py-3 text-right font-mono">{formatPrice(h.avgCost)}</td>
                     <td className="px-4 py-3 text-right font-mono">
-                      {h.ltp !== null ? formatPrice(h.ltp) : "—"}
+                      {h.ltp !== null ? formatPrice(h.ltp) : "-"}
                     </td>
                     <td
                       className={`px-4 py-3 text-right font-mono ${
                         h.pnlPct === null ? "text-muted" : h.pnlPct >= 0 ? "text-up" : "text-down"
                       }`}
                     >
-                      {h.pnlPct !== null ? formatSigned(h.pnlPct) + "%" : "—"}
+                      {h.pnlPct !== null ? formatSigned(h.pnlPct) + "%" : "-"}
                     </td>
                   </tr>
                 ))}

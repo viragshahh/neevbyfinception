@@ -7,7 +7,7 @@ import { fetchCsv, findColumn, normalizeDate, parseNumber } from "./csv";
 /**
  * Fetches a published Google Sheet (File -> Share -> Publish to web -> CSV) and
  * reads it as fund NAV history. Expects a header row with a "date" column and a
- * "nav" (or "value"/"total") column — column order and extra columns don't matter,
+ * "nav" (or "value"/"total") column - column order and extra columns don't matter,
  * so the sheet can also hold the GOOGLEFINANCE() formulas that produce those totals.
  */
 export async function fetchSheetNavHistory(csvUrl: string): Promise<NavEntry[]> {
@@ -43,7 +43,7 @@ export interface NavTimeline {
  * get here." Prefers a published Google Sheet (GOOGLEFINANCE-priced) when
  * FUND_NAV_SHEET_CSV_URL is configured, falls back to manually-logged nav_history
  * otherwise, and always appends today's value computed live from current holdings
- * so the dashboard reacts the moment a position is added, edited, or exited —
+ * so the dashboard reacts the moment a position is added, edited, or exited -
  * without waiting on either the sheet or a manual entry.
  */
 export async function getNavTimeline(holdings: Holding[], quotes: QuoteData[]): Promise<NavTimeline> {

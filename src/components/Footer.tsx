@@ -13,14 +13,14 @@ export default function Footer() {
             <span className="inline-flex items-center rounded-md bg-white px-3 py-2.5">
               <Image
                 src="/logo.png"
-                alt="Finception — Great Lakes Institute of Management, Gurgaon"
+                alt="Finception - Great Lakes Institute of Management, Gurgaon"
                 width={876}
                 height={412}
                 className="h-12 w-auto"
               />
             </span>
             <p className="mt-4 max-w-xs text-sm text-muted">
-              The official Finance Club of Great Lakes Institute of Management, Gurgaon &mdash;
+              The official Finance Club of Great Lakes Institute of Management, Gurgaon  - 
               running a student-managed investment fund with the discipline of an equity research
               desk.
             </p>
@@ -51,8 +51,8 @@ export default function Footer() {
               </a>
             </p>
             <div className="mt-5 flex flex-wrap gap-2 font-mono text-[10px] text-muted">
-              <span className="rounded-full border border-border px-2.5 py-1">Benchmark &mdash; Nifty 500</span>
-              <span className="rounded-full border border-border px-2.5 py-1">Aug &ndash; Mar Cycle</span>
+              <span className="rounded-full border border-border px-2.5 py-1">Benchmark: Nifty 500</span>
+              <span className="rounded-full border border-border px-2.5 py-1">Aug - Mar Cycle</span>
             </div>
           </div>
 
