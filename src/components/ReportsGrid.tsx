@@ -75,7 +75,7 @@ export default function ReportsGrid({
               key={s}
               type="button"
               onClick={() => setSector(s)}
-              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors \${s === sector ? "border-accent bg-accent/10 text-accent" : "border-border text-muted hover:border-accent hover:text-foreground"}`}
+              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${s === sector ? "border-accent bg-accent/10 text-accent" : "border-border text-muted hover:border-accent hover:text-foreground"}`}
             >
               {s}
             </button>
