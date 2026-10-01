@@ -17,7 +17,7 @@ import { getChart, getQuotes } from "@/lib/yahoo";
 import { getNavTimeline } from "@/lib/google-sheet-nav";
 import { getDecisions, getHoldings } from "@/lib/google-sheet-portfolio";
 import { withLiveMetrics, totalReturnPct as computeTotalReturnPct } from "@/lib/fund-engine";
-import { FUND_CONFIG, LAYERS, SECTORS } from "@/lib/sectors";
+import { FUND_CONFIG, SECTORS } from "@/lib/sectors";
 import { formatCompact, formatPercent } from "@/lib/format";
 
 // Portfolio/decision data can come from a live Google Sheet, so this page renders
@@ -98,13 +98,7 @@ export default async function Home() {
     0
   );
 
-  const coverage = SECTORS.map((s) => {
-    const layersPublished = LAYERS.filter((l) =>
-      industryContent.some((c) => c.sectorSlug === s.slug && c.layer === l.key)
-    ).length;
-    const overview = industryContent.find((c) => c.sectorSlug === s.slug && c.layer === "overview");
-    return { ...s, layersPublished, blurb: overview?.content ?? null };
-  });
+  const coverage = SECTORS;
 
   const recentDecisions = decisions.slice(0, 4);
 
@@ -254,24 +248,7 @@ export default async function Home() {
                   <h3 className="font-display text-lg font-medium text-foreground group-hover:text-accent">
                     {s.name}
                   </h3>
-                  <span className="shrink-0 font-mono text-[10px] text-muted">
-                    {s.layersPublished}/{LAYERS.length} layers
-                  </span>
-                </div>
-                <p className="mt-2 line-clamp-2 text-sm text-muted">
-                  {s.blurb ?? "Coverage not yet published for this sector."}
-                </p>
-                <div className="mt-4 flex gap-1">
-                  {LAYERS.map((l, i) => (
-                    <span
-                      key={l.key}
-                      className={`h-1 flex-1 rounded-full ${
-                        i < s.layersPublished ? "bg-accent" : "bg-border"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </Link>
+                </div></Link>
             ))}
           </div>
         </section>
