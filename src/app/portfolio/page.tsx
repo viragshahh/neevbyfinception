@@ -11,7 +11,7 @@ import PerformanceChart from "@/components/portfolio/PerformanceChart";
 export const metadata: Metadata = {
   title: "Portfolio | Finception",
   description:
-    "Finception's student-managed model portfolio: fund performance, holdings, sector coverage and the Investment Committee decision register.",
+    "Finception's student managed model portfolio: fund performance, holdings, sector coverage and the Investment Committee decision register.",
 };
 
 // Holdings/decisions/NAV can come from a live Google Sheet, so this page renders
@@ -42,9 +42,9 @@ export default async function PortfolioPage() {
         <p className="font-label text-[11px] text-accent">STUDENT MANAGED FUND</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Portfolio</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          A student-managed Indian equity portfolio governed by a documented investment mandate,
+          A student managed Indian equity portfolio governed by a documented investment mandate,
           fundamental research, valuation discipline, portfolio risk management and Investment
-          Committee oversight. NEEV is designed for long-term capital appreciation over a 3–5 year
+          Committee oversight. NEEV is designed for long term capital appreciation over a 3–5 year
           investment horizon.
         </p>
         <div className="mt-4 flex flex-wrap gap-3 font-mono text-xs text-muted">
