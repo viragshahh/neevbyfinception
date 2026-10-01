@@ -19,14 +19,22 @@ import {
 const NAV_GROUPS = [
   {
     label: "Overview",
-    links: [{ href: "/", label: "Dashboard", icon: IconCompass }],
+    links: [{ href: "/", label: "Home", icon: IconCompass }],
   },
   {
-    label: "Fund",
+    label: "The Fund",
     links: [
-      { href: "/portfolio", label: "Portfolio", icon: IconPortfolio },
-      { href: "/portfolio/register", label: "IC Decision Register", icon: IconBuilding },
+      { href: "/fund", label: "Fund Overview", icon: IconBuilding },
       { href: "/portfolio/charter", label: "Fund Charter", icon: IconShield },
+    ],
+  },
+  {
+    label: "Portfolio",
+    links: [
+      { href: "/portfolio", label: "Portfolio Overview", icon: IconPortfolio },
+      { href: "/performance", label: "Performance", icon: IconReports },
+      { href: "/risk", label: "Risk & Compliance", icon: IconShield },
+      { href: "/portfolio/register", label: "IC Decision Register", icon: IconBuilding },
     ],
   },
   {
@@ -34,6 +42,13 @@ const NAV_GROUPS = [
     links: [
       { href: "/industries", label: "NEEV Research", icon: IconCompass },
       { href: "/reports", label: "Research Library", icon: IconReports },
+    ],
+  },
+  {
+    label: "Reports",
+    links: [
+      { href: "/disclosures", label: "Reports & Disclosures", icon: IconReports },
+      { href: "/methodology", label: "Methodology", icon: IconShield },
     ],
   },
   {
@@ -45,8 +60,8 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: "Finception",
-    links: [{ href: "/neev", label: "Outreach: Neev", icon: IconSprout }],
+    label: "About",
+    links: [{ href: "/about", label: "About NEEV", icon: IconSprout }],
   },
 ];
 
@@ -97,7 +112,7 @@ export default function Sidebar({
               />
             </span>
             <span className="font-label truncate text-[9px] text-muted">
-              Neev by FINception
+              NEEV by Finception
             </span>
           </Link>
 
