@@ -13,7 +13,7 @@ export default function Footer() {
             <span className="inline-flex items-center rounded-md px-3 py-2.5">
               <Image
                 src="/logo.png"
-                alt="Finception - Great Lakes Institute of Management, Gurgaon"
+                alt="Finception, Great Lakes Institute of Management, Gurgaon"
                 width={876}
                 height={412}
                 className="h-12 w-auto"
@@ -21,7 +21,7 @@ export default function Footer() {
             </span>
             <p className="mt-4 max-w-xs text-sm text-muted">
               The official Finance Club of Great Lakes Institute of Management, Gurgaon  - 
-              running a student-managed investment fund with the discipline of an equity research
+              running a student managed investment fund with the discipline of an equity research
               desk.
             </p>
             <div className="mt-5 flex items-center gap-3">
@@ -52,7 +52,7 @@ export default function Footer() {
             </p>
             <div className="mt-5 flex flex-wrap gap-2 font-mono text-[10px] text-muted">
               <span className="rounded-full border border-border px-2.5 py-1">Benchmark: Nifty 500</span>
-              <span className="rounded-full border border-border px-2.5 py-1">Aug - Mar Cycle</span>
+              <span className="rounded-full border border-border px-2.5 py-1">Aug to Mar Cycle</span>
             </div>
           </div>
 
@@ -63,7 +63,7 @@ export default function Footer() {
               <li><Link href="/portfolio/register" className="inline-block transition-transform hover:translate-x-0.5 hover:text-accent">Decision Register</Link></li>
               <li><Link href="/portfolio/charter" className="inline-block transition-transform hover:translate-x-0.5 hover:text-accent">Fund Charter</Link></li>
               <li><Link href="/industries" className="inline-block transition-transform hover:translate-x-0.5 hover:text-accent">Industries</Link></li>
-              <li><Link href="/reports" className="inline-block transition-transform hover:translate-x-0.5 hover:text-accent">Industry Reports</Link></li>
+              <li><Link href="/reports" className="inline-block transition-transform hover:translate-x-0.5 hover:text-accent">Research Library</Link></li>
             </ul>
           </div>
 
