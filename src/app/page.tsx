@@ -28,42 +28,42 @@ const FEATURES = [
     href: "/portfolio",
     title: "Portfolio",
     description:
-      "Our student-managed model portfolio: fund performance, holdings, sector coverage and the Investment Committee decision register.",
+      "Our student managed model portfolio: fund performance, holdings, sector coverage and the Investment Committee decision register.",
     icon: IconPortfolio,
   },
   {
     href: "/markets",
     title: "Live Markets",
     description:
-      "Real-time NIFTY, SENSEX and Bank Nifty tracking with sector-wise market overviews, indices and global cues.",
+      "Real time NIFTY, SENSEX and Bank Nifty tracking with sector wise market overviews, indices and global cues.",
     icon: IconMarkets,
   },
   {
     href: "/search",
     title: "Company Search",
     description:
-      "Search any NSE/BSE-listed company and pull up its live chart, financials, fundamentals and technical signals.",
+      "Search any NSE and BSE listed company and pull up its live chart, financials, fundamentals and technical signals.",
     icon: IconSearch,
   },
   {
     href: "/reports",
     title: "Industry Reports",
     description:
-      "Sector deep-dives and monthly investment reviews published by Finception, available for viewing and download.",
+      "Sector deep dives and monthly investment reviews published by Finception, available for viewing and download.",
     icon: IconReports,
   },
   {
     href: "/news",
     title: "Finance News",
     description:
-      "A live, continuously updating feed of Indian and global financial news and market-moving headlines.",
+      "A live, continuously updating feed of Indian and global financial news and market moving headlines.",
     icon: IconNews,
   },
   {
     href: "/neev",
     title: "Neev by Finception",
     description:
-      "Our outreach initiative laying the foundation of financial literacy - its mission, vision and impact.",
+      "Our outreach initiative laying the foundation of financial literacy its mission, vision and impact.",
     icon: IconSprout,
   },
 ];
@@ -127,8 +127,8 @@ export default async function Home() {
               className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-muted"
               style={{ animationDelay: "160ms" }}
             >
-              NEEV is Finception's student-managed Indian equity investment initiative, built around
-              sector analysis, value-chain assessment, fundamental research, valuation discipline,
+              NEEV is Finception's student managed Indian equity investment initiative, built around
+              sector analysis, value chain assessment, fundamental research, valuation discipline,
               portfolio risk management and Investment Committee oversight.
             </p>
             <div
