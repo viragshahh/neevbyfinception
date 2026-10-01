@@ -14,7 +14,7 @@ const PILLARS = [
   {
     title: "Community Outreach",
     description:
-      "Taking structured, easy-to-follow financial education sessions beyond campus to schools and underserved communities around Gurgaon.",
+      "Taking structured, easy to follow financial education sessions beyond campus to schools and underserved communities around Gurgaon.",
   },
   {
     title: "Peer Mentorship",
@@ -24,7 +24,7 @@ const PILLARS = [
   {
     title: "Measurable Impact",
     description:
-      "Tracking outcomes such as workshops delivered, participants reached, and follow-on engagement rather than vanity metrics.",
+      "Tracking outcomes such as workshops delivered, participants reached, and follow on engagement rather than vanity metrics.",
   },
 ];
 
@@ -46,8 +46,8 @@ export default function NeevPage() {
         <div className="card p-6">
           <h2 className="text-lg font-semibold text-accent">Our Mission</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            To make financial literacy accessible and practical for students, first-time
-            earners and underserved communities - through simple, jargon-free workshops on
+            To make financial literacy accessible and practical for students, first time
+            earners and underserved communities through simple, jargon free workshops on
             budgeting, saving, credit and investing that translate directly into everyday
             financial decisions.
           </p>
@@ -55,8 +55,8 @@ export default function NeevPage() {
         <div className="card p-6">
           <h2 className="text-lg font-semibold text-accent">Our Vision</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            A community where sound financial decision-making is not a privilege reserved for
-            the few, but a foundational life skill available to everyone - built one
+            A community where sound financial decision making is not a privilege reserved for
+            the few, but a foundational life skill available to everyone built one
             session, one mentee, and one household at a time.
           </p>
         </div>
