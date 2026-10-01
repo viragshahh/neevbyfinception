@@ -18,7 +18,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Finception | Student Managed Investment Fund, Great Lakes Institute of Management",
   description:
-    "Finception is the Finance Club of Great Lakes Institute of Management, Gurgaon - a student-managed model portfolio, industry research platform, live markets, and financial literacy outreach through Neev.",
+    "Finception is the Finance Club of Great Lakes Institute of Management, Gurgaon, a student managed model portfolio, industry research platform, live markets, and financial literacy outreach through Neev.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
