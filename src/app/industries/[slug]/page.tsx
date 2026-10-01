@@ -49,7 +49,7 @@ export default async function IndustryPage({
       {content.length > 0 ? (
         <div className="space-y-6">
           {content.map((entry) => (
-            <section key={entry.id} className="card p-6">
+            <section key={`${entry.sectorSlug}-${entry.layer}`} className="card p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="text-lg font-semibold text-foreground">
                   {entry.title ?? "Research Update"}
