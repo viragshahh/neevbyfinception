@@ -32,8 +32,8 @@ const NAV_GROUPS = [
   {
     label: "Research",
     links: [
-      { href: "/industries", label: "Industries", icon: IconCompass },
-      { href: "/reports", label: "Industry Reports", icon: IconReports },
+      { href: "/industries", label: "NEEV Research", icon: IconCompass },
+      { href: "/reports", label: "Research Library", icon: IconReports },
     ],
   },
   {
