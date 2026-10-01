@@ -333,39 +333,6 @@ export default async function FundCharterPage() {
         <p className="font-label text-[11px] text-accent">NEEV</p>
         <p className="mt-2 font-display text-xl font-semibold">Research. Value. Invest.</p>
       </section>
-      {/* Performance measurement */}
-      <section className="mb-10">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Performance Measurement</h2>
-        <div className="card grid gap-4 p-5 sm:grid-cols-2">
-          <div>
-            <p className="text-xs text-muted">Reported monthly</p>
-            <p className="mt-1 text-sm text-foreground">
-              Absolute return, return vs. benchmark, and sector attribution.
-            </p>
-          </div>
-          <div>
-            <p className="text-xs text-muted">Reported annually (March)</p>
-            <p className="mt-1 text-sm text-foreground">
-              Alpha generated, hit ratio, portfolio turnover, maximum drawdown, and volatility.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Continuity */}
-      <section>
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Continuity</h2>
-        <div className="card p-5 text-sm text-muted">
-          <p>
-            A one-page handoff memo - portfolio state, open theses, lessons learned - is
-            prepared by the outgoing Core Committee in March for the incoming batch.
-          </p>
-          <p className="mt-3">
-            The Portfolio Archive and Decision Register persist across cycles as the club&apos;s
-            institutional memory.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }
