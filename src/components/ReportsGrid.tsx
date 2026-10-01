@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { IndustryReport } from "@/lib/reports-db";
-import { SECTORS } from "@/lib/sectors";
+import { IconSearch } from "@/components/icons/FinanceIcons";
 
 const DOCUMENT_TYPE_LABELS: Record<string, string> = {
   monthly_review: "Monthly NEEV Research",
@@ -16,22 +16,25 @@ const DOCUMENT_TYPE_LABELS: Record<string, string> = {
   disclosure: "Disclosure",
   other: "Other",
 };
-import { IconSearch } from "@/components/icons/FinanceIcons";
 
 function formatSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-const SECTOR_FILTERS = ["All Reports", ...SECTORS.map((s) => s.name)];
-
-export default function ReportsGrid({ reports }: { reports: IndustryReport[] }) {
+export default function ReportsGrid({
+  reports,
+  showSectorFilters = true,
+}: {
+  reports: IndustryReport[];
+  showSectorFilters?: boolean;
+}) {
   const [sector, setSector] = useState("All Reports");
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return reports
-      .filter((r) => sector === "All Reports" || r.sector === sector)
+      .filter((r) => !showSectorFilters || sector === "All Reports" || r.sector === sector)
       .filter(
         (r) =>
           q === "" ||
@@ -40,7 +43,7 @@ export default function ReportsGrid({ reports }: { reports: IndustryReport[] }) 
           r.authors.toLowerCase().includes(q) ||
           r.sector.toLowerCase().includes(q)
       );
-  }, [reports, sector, query]);
+  }, [reports, sector, query, showSectorFilters]);
 
   if (reports.length === 0) {
     return (
@@ -63,22 +66,20 @@ export default function ReportsGrid({ reports }: { reports: IndustryReport[] }) 
         />
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {SECTOR_FILTERS.map((s) => (
-          <button
-            key={s}
-            type="button"
-            onClick={() => setSector(s)}
-            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-              s === sector
-                ? "border-accent bg-accent/10 text-accent"
-                : "border-border text-muted hover:border-accent hover:text-foreground"
-            }`}
-          >
-            {s}
-          </button>
-        ))}
-      </div>
+      {showSectorFilters && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {["All Reports"].map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => setSector(s)}
+              className="rounded-full border border-accent bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
 
       {filtered.length === 0 ? (
         <div className="card mt-6 p-8 text-center text-sm text-muted">
@@ -92,11 +93,9 @@ export default function ReportsGrid({ reports }: { reports: IndustryReport[] }) 
                 <span className="w-fit rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-medium text-accent">
                   {report.sector}
                 </span>
-                {report.type === "monthly_review" && (
-                  <span className="w-fit rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">
-                    Monthly Review
-                  </span>
-                )}
+                <span className="w-fit rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">
+                  {DOCUMENT_TYPE_LABELS[report.type] ?? DOCUMENT_TYPE_LABELS.other}
+                </span>
               </div>
               <h3 className="mt-3 text-base font-semibold text-foreground">{report.title}</h3>
               <p className="mt-2 flex-1 text-sm text-muted">{report.summary}</p>
