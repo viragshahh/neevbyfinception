@@ -5,7 +5,6 @@ import { getQuotes } from "@/lib/yahoo";
 import { computeFundBreakdown } from "@/lib/fund-engine";
 import { FUND_CONFIG } from "@/lib/sectors";
 import { formatCompact } from "@/lib/format";
-import { IconShield } from "@/components/icons/FinanceIcons";
 
 /** Plain (unsigned) percent for weight/allocation figures - formatPercent's "+" prefix reads as a gain/loss delta, not a share of NAV. */
 function weightPct(value: number): string {
@@ -178,8 +177,7 @@ export default async function FundCharterPage() {
       </section>
 
       <section className="mb-10">
-        <div className="mb-4 flex items-center gap-2">
-          <IconShield className="h-5 w-5 text-accent" />
+        <div className="mb-4">
           <h2 className="text-xl font-semibold text-foreground">Portfolio Construction &amp; Live Controls</h2>
         </div>
         <p className="mb-4 text-sm text-muted">
