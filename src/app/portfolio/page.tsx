@@ -46,7 +46,7 @@ export default async function PortfolioPage() {
           ["Fund value", formatCompact(liveValue)],
           ["Since inception", formatPercent(totalReturn, false)],
           ["Equity value", formatCompact(breakdown.holdingsValue)],
-          ["Cash", formatPercent(breakdown.cashPct)],
+          ["Cash", formatPercent(breakdown.cashPct, false)],
           ["Holdings", String(breakdown.activeNames)],
         ].map(([label, value]) => (
           <div key={label} className="card p-5">
@@ -122,7 +122,7 @@ export default async function PortfolioPage() {
                     <tr key={h.id}>
                       <td className="px-4 py-3"><p className="font-medium">{h.companyName}</p><p className="font-mono text-xs text-muted">{h.symbol}</p></td>
                       <td className="px-4 py-3 text-muted">{h.sector}</td>
-                      <td className="px-4 py-3 text-right font-mono">{formatPercent(weight)}</td>
+                      <td className="px-4 py-3 text-right font-mono">{formatPercent(weight, false)}</td>
                       <td className="px-4 py-3 text-right font-mono">{formatPrice(h.avgCost)}</td>
                       <td className="px-4 py-3 text-right font-mono">{h.ltp !== null ? formatPrice(h.ltp) : "Unavailable"}</td>
                       <td className={`px-4 py-3 text-right font-mono ${h.pnlPct === null ? "text-muted" : h.pnlPct >= 0 ? "text-up" : "text-down"}`}>
