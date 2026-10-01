@@ -3,6 +3,19 @@
 import { useMemo, useState } from "react";
 import type { IndustryReport } from "@/lib/reports-db";
 import { SECTORS } from "@/lib/sectors";
+
+const DOCUMENT_TYPE_LABELS: Record<string, string> = {
+  monthly_review: "Monthly NEEV Research",
+  industry_report: "Industry Research",
+  investment_memo: "Investment Decision Memo",
+  performance_report: "Performance Report",
+  portfolio_review: "Portfolio Review",
+  ic_record: "Investment Committee Record",
+  annual_review: "Annual Review",
+  methodology: "Methodology",
+  disclosure: "Disclosure",
+  other: "Other",
+};
 import { IconSearch } from "@/components/icons/FinanceIcons";
 
 function formatSize(bytes: number): string {
