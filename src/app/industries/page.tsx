@@ -1,23 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ReportsGrid from "@/components/ReportsGrid";
+import { listReports } from "@/lib/reports-db";
 import { SECTORS } from "@/lib/sectors";
 
 export const metadata: Metadata = {
   title: "NEEV Research",
-  description: "NEEV's ongoing sector research supporting the Indian equity investment process.",
+  description: "NEEV's recurring monthly research publications supporting the Indian equity investment process.",
 };
 
-export default function IndustriesPage() {
+export default async function IndustriesPage() {
+  const reports = await listReports();
+  const monthlyReports = reports.filter((report) => report.type === "monthly_review");
+
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <header className="mb-8">
-        <p className="font-label text-[11px] text-accent">STUDENT MANAGED FUND</p>
+        <p className="font-label text-[11px] text-accent">RESEARCH &amp; LIBRARY</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
           NEEV Research
         </h1>
-        <p className="mt-3 max-w-2xl text-muted">
-          Ongoing sector research supporting NEEV's long term Indian equity investment process.
-          Coverage will deepen as research is completed and reviewed.
+        <p className="mt-3 max-w-3xl text-muted">
+          The recurring research publication stream of NEEV. Monthly reports document sector,
+          value-chain and company-level work as the investment process develops.
         </p>
       </header>
 
@@ -35,16 +40,33 @@ export default function IndustriesPage() {
         ))}
       </nav>
 
-      <div className="mt-8 card p-8 text-center">
-        <h2 className="text-xl font-semibold text-foreground">
-          Research is being developed
-        </h2>
-        <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-muted">
-          Sector analysis, value chain work, company research and valuation work will be added
-          as they are completed and suitable for publication. Finalized reports are available in
-          the Research Library.
-        </p>
-      </div>
+      <section className="mt-10">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-label text-[10px] text-accent">RECURRING PUBLICATIONS</p>
+            <h2 className="mt-1 text-2xl font-semibold">Monthly NEEV Research</h2>
+            <p className="mt-1 max-w-2xl text-sm text-muted">
+              Monthly research reports published as they are completed and reviewed.
+            </p>
+          </div>
+          <Link href="/reports" className="text-sm font-medium text-accent hover:underline">
+            Open NEEV Library →
+          </Link>
+        </div>
+
+        {monthlyReports.length > 0 ? (
+          <ReportsGrid reports={monthlyReports} />
+        ) : (
+          <div className="card p-8 text-center">
+            <h3 className="text-lg font-semibold">Monthly research is being developed</h3>
+            <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-muted">
+              Monthly reports will be published here as the research cycle progresses and reports
+              are completed and reviewed. Developing work is intentionally not presented as
+              completed research.
+            </p>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
