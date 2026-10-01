@@ -21,7 +21,22 @@ export async function POST(req: NextRequest) {
   const summary = String(formData.get("summary") ?? "").trim();
   const authors = String(formData.get("authors") ?? "").trim() || "Finception Research Desk";
   const date = String(formData.get("date") ?? "").trim() || new Date().toISOString().slice(0, 10);
-  const type: ReportType = formData.get("type") === "monthly_review" ? "monthly_review" : "industry_report";
+  const allowedTypes: ReportType[] = [
+    "monthly_review",
+    "industry_report",
+    "investment_memo",
+    "performance_report",
+    "portfolio_review",
+    "ic_record",
+    "annual_review",
+    "methodology",
+    "disclosure",
+    "other",
+  ];
+  const requestedType = String(formData.get("type") ?? "other");
+  const type: ReportType = allowedTypes.includes(requestedType as ReportType)
+    ? (requestedType as ReportType)
+    : "other";
   const file = formData.get("file");
 
   if (!title || !sector || !summary) {
