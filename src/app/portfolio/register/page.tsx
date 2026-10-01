@@ -4,7 +4,7 @@ import DecisionRegisterList from "@/components/portfolio/DecisionRegisterList";
 
 export const metadata: Metadata = {
   title: "Decision Register | Finception",
-  description: "The full Investment Committee decision register for Finception's student-managed fund.",
+  description: "The full Investment Committee decision register for Finception's student managed fund.",
 };
 
 // Decisions can come from a live Google Sheet, so this page renders fresh on
