@@ -4,12 +4,20 @@ import { listReports } from "@/lib/reports-db";
 
 export const metadata: Metadata = {
   title: "NEEV Library",
-  description: "NEEV's formal document library for published research, investment records, performance reporting, portfolio reviews and disclosures.",
+  description:
+    "NEEV's formal document library for published research, investment records, performance reporting, portfolio reviews and disclosures.",
 };
 
 export default async function ReportsPage() {
   const reports = await listReports();
-  const libraryReports = reports.filter((report) => report.type !== "monthly_review");
+  const libraryReports = reports.filter(
+    (report) =>
+      report.type !== "monthly_review" &&
+      !(
+        report.title.trim().toLowerCase() === "kia motors" &&
+        report.summary.trim().toLowerCase() === "kia motors industry research"
+      )
+  );
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -27,7 +35,7 @@ export default async function ReportsPage() {
         </p>
       </header>
 
-      <ReportsGrid reports={libraryReports} />
+      <ReportsGrid reports={libraryReports} showSectorFilters={false} />
     </div>
   );
 }
