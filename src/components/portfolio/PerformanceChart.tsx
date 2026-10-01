@@ -49,7 +49,7 @@ export default function PerformanceChart({ navHistory, benchmark }: Props) {
       const benchSeries = chart.addSeries(LineSeries, {
         color: "#93a39a",
         lineWidth: 2,
-        title: "Nifty 500",
+        title: "Nifty 500 market proxy",
       });
       benchSeries.setData(
         benchmark.map((b) => ({
