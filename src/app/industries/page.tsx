@@ -13,10 +13,11 @@ export default function IndustriesPage() {
       <header className="mb-8">
         <p className="font-label text-[11px] text-accent">STUDENT MANAGED FUND</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-          Industry Coverage
+          NEEV Research
         </h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Explore Finception's research coverage across the five industries tracked by NEEV.
+          Ongoing sector research supporting NEEV's long-term Indian equity investment process.
+          Coverage will deepen as research is completed and reviewed.
         </p>
       </header>
 
