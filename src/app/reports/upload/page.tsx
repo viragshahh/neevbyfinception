@@ -93,9 +93,9 @@ export default function UploadReportPage() {
         <p className="font-label text-[11px] text-accent">RESEARCH LIBRARY</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Upload a Report</h1>
         <p className="mt-3 max-w-2xl text-muted">
-          Publish a new industry report PDF. It will appear on the{" "}
+          Publish a new document PDF. It will appear on the{" "}
           <Link href="/reports" className="text-accent hover:underline">
-            Industry Reports
+            NEEV Library
           </Link>{" "}
           page immediately.
         </p>
@@ -115,7 +115,7 @@ export default function UploadReportPage() {
 
       <form onSubmit={handleSubmit} className="card grid gap-4 p-6">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-foreground">Report Type</label>
+          <label className="mb-1.5 block text-sm font-medium text-foreground">Document Type</label>
           <select
             name="type"
             defaultValue="industry_report"
