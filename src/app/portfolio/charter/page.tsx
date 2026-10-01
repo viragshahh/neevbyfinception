@@ -15,7 +15,7 @@ function weightPct(value: number): string {
 export const metadata: Metadata = {
   title: "Fund Charter | Finception",
   description:
-    "Finception's Fund Charter - structure, position limits, deployment schedule, risk controls and governance for the student-managed model portfolio.",
+    "The governing investment mandate for NEEV: objective, universe, investment philosophy, process, portfolio construction, risk management, governance and performance measurement.",
 };
 
 // Live compliance figures depend on current holdings + market quotes, so this
@@ -62,9 +62,10 @@ export default async function FundCharterPage() {
   const quotes = symbols.length > 0 ? await getQuotes(symbols).catch(() => []) : [];
   const breakdown = computeFundBreakdown(holdings, quotes);
 
+  const maxInitialPositionPct = FUND_CONFIG.maxInitialPositionWeight * 100;
   const maxStockLimitPct = FUND_CONFIG.maxSingleStockWeight * 100;
   const maxSectorLimitPct = FUND_CONFIG.maxSingleSectorWeight * 100;
-  const minCashPct = FUND_CONFIG.minCashBuffer * 100;
+  const maxCashPct = FUND_CONFIG.maxCashBuffer * 100;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
@@ -77,76 +78,147 @@ export default async function FundCharterPage() {
         </p>
       </header>
 
-      {/* Structure & Capital */}
       <section className="mb-10">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Structure &amp; Capital</h2>
-        <div className="card grid gap-4 p-5 sm:grid-cols-2">
-          <div>
-            <p className="text-xs text-muted">Vehicle</p>
-            <p className="mt-1 text-sm text-foreground">
-              Paper/simulated portfolio (notional AUM) - no real capital deployed unless
-              separately approved by the faculty mentor and institute administration.
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Fund Mandate</h2>
+        <div className="card p-6 text-sm leading-relaxed text-muted">
+          NEEV identifies and owns high-quality Indian businesses with sustainable long-term growth
+          potential, purchased at valuations that provide an attractive risk-adjusted return, while
+          maintaining disciplined portfolio construction, risk management and continuous investment review.
+        </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Objective &amp; Investment Universe</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="card p-5">
+            <p className="text-xs text-muted">Objective</p>
+            <p className="mt-2 text-sm leading-relaxed text-foreground">
+              Long-term capital appreciation through fundamentally strong Indian businesses at
+              attractive valuations, with a 3–5 year investment horizon.
             </p>
           </div>
-          <div>
-            <p className="text-xs text-muted">Notional AUM</p>
-            <p className="mt-1 text-sm text-foreground">{formatCompact(FUND_CONFIG.notionalAum)}</p>
-          </div>
-          <div>
+          <div className="card p-5">
             <p className="text-xs text-muted">Benchmark</p>
-            <p className="mt-1 text-sm text-foreground">
-              {FUND_CONFIG.benchmarkName} - fixed for the full 8-month cycle
+            <p className="mt-2 text-sm font-semibold text-foreground">{FUND_CONFIG.benchmarkName}</p>
+            <p className="mt-1 text-xs text-muted">
+              Performance is evaluated using absolute return, relative return, volatility,
+              maximum drawdown and portfolio attribution.
             </p>
           </div>
-          <div>
-            <p className="text-xs text-muted">Currency &amp; Universe</p>
-            <p className="mt-1 text-sm text-foreground">
-              INR-denominated, NSE/BSE-listed equities only, across the 5 mandated sectors.
+          <div className="card p-5">
+            <p className="text-xs text-muted">Universe</p>
+            <p className="mt-2 text-sm leading-relaxed text-foreground">
+              Equity and equity-related securities of companies listed in India, primarily on NSE
+              and BSE, across large-cap, mid-cap and small-cap segments.
+            </p>
+          </div>
+          <div className="card p-5">
+            <p className="text-xs text-muted">Mandate Boundaries</p>
+            <p className="mt-2 text-sm leading-relaxed text-foreground">
+              India only. Leverage is not permitted. Derivatives do not form part of the core
+              investment strategy.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Live compliance */}
+      <section className="mb-10">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Investment Philosophy</h2>
+        <div className="card grid gap-3 p-6 sm:grid-cols-2">
+          {[
+            "Sustainable competitive advantages",
+            "Strong and consistent financial performance",
+            "Attractive returns on capital",
+            "Healthy cash-flow generation",
+            "Prudent capital allocation",
+            "Sound corporate governance",
+            "Sustainable long-term growth opportunities",
+            "Business quality and valuation considered together",
+          ].map((item) => (
+            <div key={item} className="flex gap-2 text-sm text-muted">
+              <span className="text-accent">•</span><span>{item}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-muted">
+          A high-quality business is not considered investable solely because of its fundamentals;
+          the market price must provide an attractive risk-adjusted return.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Investment Process</h2>
+        <div className="card p-6">
+          <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-foreground">
+            {[
+              "Sector Analysis",
+              "Value-Chain Analysis",
+              "Company Screening",
+              "Fundamental Research",
+              "Valuation",
+              "Investment Decision",
+              "Portfolio Construction",
+              "Monitoring",
+            ].map((step, i, steps) => (
+              <span key={step} className="inline-flex items-center gap-2">
+                <span className="rounded-md border border-border px-3 py-2">{step}</span>
+                {i < steps.length - 1 && <span className="text-accent">→</span>}
+              </span>
+            ))}
+          </div>
+          <p className="mt-5 text-sm text-muted">
+            Company evaluation covers business quality, financial strength, competitive advantage,
+            management and governance, growth potential, valuation and risk.
+          </p>
+          <p className="mt-2 text-sm text-muted">
+            Appropriate valuation methods may include DCF, P/E, EV/EBITDA, P/B, Residual Income
+            and Sum-of-the-Parts. Major investment decisions incorporate Bear, Base and Bull cases.
+          </p>
+        </div>
+      </section>
+
       <section className="mb-10">
         <div className="mb-4 flex items-center gap-2">
           <IconShield className="h-5 w-5 text-accent" />
-          <h2 className="text-xl font-semibold text-foreground">Position &amp; Concentration Limits</h2>
+          <h2 className="text-xl font-semibold text-foreground">Portfolio Construction &amp; Live Controls</h2>
         </div>
         <p className="mb-4 text-sm text-muted">
-          Checked live against current holdings and market prices - the same figures behind
-          the fund&apos;s Current NAV.
+          Current portfolio exposures are checked against the charter's internal guidelines.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <LimitCard
-            label="Largest single-stock weight"
+            label="Largest initial position"
+            current={`${maxInitialPositionPct}% guideline`}
+            limit={`Maximum initial position: ${maxInitialPositionPct}%`}
+            detail="Applied when capital is first allocated to a security."
+            breach={false}
+          />
+          <LimitCard
+            label="Largest individual position"
             current={weightPct(breakdown.maxSingleStockPct)}
-            limit={`${maxStockLimitPct}% of NAV at purchase`}
-            limitLabel="Charter limit"
+            limit={`Maximum individual position: ${maxStockLimitPct}%`}
             detail={breakdown.maxSingleStockSymbol ? `Currently ${breakdown.maxSingleStockSymbol}` : "No active holdings yet"}
             breach={breakdown.maxSingleStockPct > maxStockLimitPct}
           />
           <LimitCard
-            label="Largest sector weight"
+            label="Largest sector exposure"
             current={weightPct(breakdown.maxSectorPct)}
-            limit={`${maxSectorLimitPct}% of NAV`}
-            limitLabel="Charter limit"
+            limit={`Maximum sector exposure: ${maxSectorLimitPct}%`}
             detail={breakdown.maxSector ? `Currently ${breakdown.maxSector}` : "No active holdings yet"}
             breach={breakdown.maxSectorPct > maxSectorLimitPct}
           />
           <LimitCard
-            label="Cash buffer"
+            label="Cash allocation"
             current={weightPct(breakdown.cashPct)}
-            limit={`${minCashPct}% minimum`}
-            limitLabel="Charter limit"
-            breach={breakdown.cashPct < minCashPct}
+            limit={`Permitted range: 0–${maxCashPct}%`}
+            detail="Cash is determined by portfolio construction and available opportunities."
+            breach={breakdown.cashPct > maxCashPct}
           />
           <LimitCard
-            label="Active names"
+            label="Active holdings"
             current={String(breakdown.activeNames)}
-            limit={`${FUND_CONFIG.minNamesAtFullDeployment} to ${FUND_CONFIG.maxNamesAtFullDeployment} at full deployment`}
-            limitLabel="Target"
-            detail="3 to 4 per industry once fully constructed (from September)"
+            limit={`Target portfolio size: ${FUND_CONFIG.minNamesAtFullDeployment}–${FUND_CONFIG.maxNamesAtFullDeployment} securities`}
+            detail="Position sizes reflect conviction, valuation, downside risk, liquidity and portfolio-level exposure."
             breach={false}
           />
         </div>
@@ -158,11 +230,7 @@ export default async function FundCharterPage() {
                 <span className="text-foreground">{s.sector}</span>
                 <span className="flex items-center gap-3">
                   <span className="font-mono text-xs text-muted">{formatCompact(s.value)}</span>
-                  <span
-                    className={`font-mono text-xs font-medium ${
-                      s.weightPct > maxSectorLimitPct ? "text-down" : "text-muted"
-                    }`}
-                  >
+                  <span className={`font-mono text-xs font-medium ${s.weightPct > maxSectorLimitPct ? "text-down" : "text-muted"}`}>
                     {weightPct(s.weightPct)}
                   </span>
                 </span>
@@ -172,63 +240,99 @@ export default async function FundCharterPage() {
         )}
       </section>
 
-      {/* Deployment schedule */}
       <section className="mb-10">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Deployment Schedule</h2>
-        <div className="card divide-y divide-border">
-          <div className="px-4 py-3 text-sm">
-            <span className="font-mono text-xs text-accent">August</span>
-            <p className="mt-1 text-muted">
-              Up to 50% of notional capital deployed, based on Top-5-per-industry screening.
-            </p>
-          </div>
-          <div className="px-4 py-3 text-sm">
-            <span className="font-mono text-xs text-accent">September</span>
-            <p className="mt-1 text-muted">
-              Remaining capital deployed; portfolio considered &ldquo;fully constructed&rdquo; from
-              this point.
-            </p>
-          </div>
-          <div className="px-4 py-3 text-sm">
-            <span className="font-mono text-xs text-accent">October to February</span>
-            <p className="mt-1 text-muted">
-              Rebalancing only (no new net capital deployment) - driven by each month&apos;s
-              incremental evidence layer.
-            </p>
-          </div>
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Risk Management</h2>
+        <div className="card grid gap-3 p-6 sm:grid-cols-2">
+          {[
+            "Business and industry risk",
+            "Financial and liquidity risk",
+            "Valuation risk",
+            "Governance risk",
+            "Concentration risk",
+            "Regulatory and structural risks",
+          ].map((risk) => (
+            <div key={risk} className="text-sm text-muted">• {risk}</div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-muted">
+          Each investment must document its key risks and thesis-break conditions. Capital is
+          allocated with the objective of limiting permanent loss of capital.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Investment Decision &amp; Governance</h2>
+        <div className="card p-6 text-sm leading-relaxed text-muted">
+          Every investment is supported by a documented thesis covering business rationale, industry
+          and competitive position, financial performance, growth drivers, valuation, expected
+          return, key risks, proposed allocation and conditions for review or exit. Material
+          investment decisions are reviewed through the NEEV Investment Committee before capital
+          deployment. See the <Link href="/portfolio/register" className="text-accent hover:underline">Decision Register</Link> for logged decisions.
         </div>
       </section>
 
-      {/* Risk controls */}
       <section className="mb-10">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Risk Controls</h2>
-        <div className="card p-5 text-sm text-muted">
-          <p>
-            Any holding down 25% from cost, or missing 2 consecutive quarterly result deadlines for
-            coverage, is automatically tabled for Investment Committee review.
-          </p>
-          <p className="mt-3">
-            No leverage, no derivatives, no short positions - long-only cash equity mandate for
-            the full cycle.
-          </p>
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Monitoring &amp; Review</h2>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[
+            ["Monthly", "Performance and portfolio review"],
+            ["Quarterly", "Fundamental and valuation review"],
+            ["Annually", "Comprehensive investment thesis and portfolio review"],
+          ].map(([period, description]) => (
+            <div key={period} className="card p-5">
+              <p className="font-mono text-xs text-accent">{period}</p>
+              <p className="mt-2 text-sm text-muted">{description}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-muted">
+          Positions may be increased, reduced or exited when the investment thesis, valuation, risk
+          profile or portfolio considerations materially change.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Performance Measurement</h2>
+        <div className="card grid gap-3 p-6 sm:grid-cols-2">
+          {[
+            "Absolute return",
+            "Relative return vs. Nifty 500 TRI",
+            "Volatility",
+            "Maximum drawdown",
+            "Portfolio attribution",
+            "Sector and security-level contribution",
+          ].map((metric) => (
+            <div key={metric} className="text-sm text-muted">• {metric}</div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-muted">
+          Performance evaluation considers both investment outcomes and the quality of the
+          underlying investment process.
+        </p>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">Investment Principles</h2>
+        <div className="card grid gap-3 p-6 sm:grid-cols-2">
+          {[
+            "Research before investment.",
+            "Fundamentals over speculation.",
+            "Valuation matters.",
+            "Capital preservation is paramount.",
+            "Long-term thinking over short-term market movements.",
+            "Disciplined diversification over excessive concentration.",
+            "Continuous monitoring and accountability.",
+            "Evidence-based decisions over emotion.",
+          ].map((principle) => (
+            <div key={principle} className="text-sm font-medium text-foreground">• {principle}</div>
+          ))}
         </div>
       </section>
 
-      {/* Governance */}
-      <section className="mb-10">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Decision Rights &amp; Governance</h2>
-        <div className="card p-5 text-sm text-muted">
-          <p>
-            Every decision is logged in the{" "}
-            <Link href="/portfolio/register" className="text-accent hover:underline">
-              Decision Register
-            </Link>
-            : date, stock/sector, rationale, vote count, and dissenting views (if any) - the
-            primary input to the March performance attribution.
-          </p>
-        </div>
+      <section className="border-t border-border pt-6 text-center">
+        <p className="font-label text-[11px] text-accent">NEEV</p>
+        <p className="mt-2 font-display text-xl font-semibold">Research. Value. Invest.</p>
       </section>
-
       {/* Performance measurement */}
       <section className="mb-10">
         <h2 className="mb-4 text-xl font-semibold text-foreground">Performance Measurement</h2>
