@@ -56,7 +56,7 @@ export default async function IndustryPage({
                 </h2>
                 {entry.updatedAt ? (
                   <span className="font-mono text-xs text-muted">
-                    {new Date(entry.publishedAt).toLocaleDateString("en-IN")}
+                    {new Date(entry.updatedAt).toLocaleDateString("en-IN")}
                   </span>
                 ) : null}
               </div>
