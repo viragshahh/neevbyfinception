@@ -71,7 +71,7 @@ export default async function Home() {
           <Stat label="Current fund value" value={formatCompact(liveValue)} note="Live portfolio valuation" />
           <Stat label="Since inception" value={formatPercent(returnPct, false)} note="Against initial notional capital" />
           <Stat label="Active holdings" value={String(breakdown.activeNames)} note="Charter target: 15–25 at full deployment" />
-          <Stat label="Cash" value={formatPercent(breakdown.cashPct)} note="Charter range: 0–5%" />
+          <Stat label="Cash" value={formatPercent(breakdown.cashPct, false)} note="Charter range: 0–5%" />
         </section>
 
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
