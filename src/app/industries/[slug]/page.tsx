@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { listIndustryContent } from "@/lib/portfolio-db";
-import { getSector, LAYERS, SECTORS } from "@/lib/sectors";
+import { getSector, SECTORS } from "@/lib/sectors";
 
 export function generateStaticParams() {
   return SECTORS.map((s) => ({ slug: s.slug }));
@@ -15,9 +16,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const sector = getSector(slug);
   return {
-    title: sector ? `${sector.name} | Finception` : "Industry | Finception",
+    title: sector ? sector.name + " | Finception" : "Industry | Finception",
     description: sector
-      ? `Finception's ongoing research coverage of ${sector.name}.`
+      ? "Finception's ongoing research coverage of " + sector.name + "."
       : undefined,
   };
 }
@@ -34,7 +35,6 @@ export default async function IndustryPage({
   if (!sector) notFound();
 
   const content = await listIndustryContent(slug);
-  const publishedCount = LAYERS.filter((l) => content.some((c) => c.layer === l.key)).length;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
@@ -42,41 +42,44 @@ export default async function IndustryPage({
         <p className="font-label text-[11px] text-accent">INDUSTRY COVERAGE</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{sector.name}</h1>
         <p className="mt-3 text-muted">
-          {publishedCount} of {LAYERS.length} monthly layers published.
+          Research and investment insights for {sector.name} will be published here as they are completed.
         </p>
-        <div className="mt-4 flex gap-1">
-          {LAYERS.map((l, i) => (
-            <span
-              key={l.key}
-              className={`h-1.5 flex-1 rounded-full ${
-                i < publishedCount ? "bg-accent" : "bg-border"
-              }`}
-            />
-          ))}
-        </div>
       </header>
 
-      <div className="space-y-6">
-        {LAYERS.map((layer) => {
-          const entry = content.find((c) => c.layer === layer.key);
-          return (
-            <section key={layer.key} className="card p-6">
+      {content.length > 0 ? (
+        <div className="space-y-6">
+          {content.map((entry) => (
+            <section key={entry.id} className="card p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h2 className="text-lg font-semibold text-foreground">{layer.label}</h2>
-                <span className="font-mono text-xs text-muted">{layer.month}</span>
+                <h2 className="text-lg font-semibold text-foreground">
+                  {entry.title ?? "Research Update"}
+                </h2>
+                {entry.publishedAt ? (
+                  <span className="font-mono text-xs text-muted">
+                    {new Date(entry.publishedAt).toLocaleDateString("en-IN")}
+                  </span>
+                ) : null}
               </div>
-              <p className="mt-1 text-xs italic text-muted">{layer.question}</p>
-              {entry ? (
-                <div className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-muted">
-                  {entry.content}
-                </div>
-              ) : (
-                <p className="mt-4 text-sm text-muted">Not yet published.</p>
-              )}
+              <div className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-muted">
+                {entry.content}
+              </div>
             </section>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="card p-8 text-center">
+          <h2 className="text-xl font-semibold text-foreground">Research coming soon</h2>
+          <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-muted">
+            This industry page will be updated as research is completed and published.
+          </p>
+          <Link
+            href="/industries"
+            className="mt-5 inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent hover:text-accent"
+          >
+            Back to Industry Coverage
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
