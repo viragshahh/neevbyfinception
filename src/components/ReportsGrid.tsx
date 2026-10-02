@@ -95,9 +95,7 @@ export default function ReportsGrid({
                 <span className="w-fit rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-medium text-accent">
                   {report.sector}
                 </span>
-                <span className="w-fit rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">
-                  {DOCUMENT_TYPE_LABELS[report.type] ?? DOCUMENT_TYPE_LABELS.other}
-                </span>
+                <span className="w-fit rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent">{DOCUMENT_TYPE_LABELS[report.type] ?? DOCUMENT_TYPE_LABELS.other}</span>{report.issueNumber ? <span className="w-fit rounded-full border border-border px-2.5 py-1 text-[11px] text-muted">Issue {report.issueNumber}</span> : null}<span className={"w-fit rounded-full border px-2.5 py-1 text-[11px] "+(report.publicationStatus==="PUBLISHED"?"border-accent/30 text-accent":"border-yellow-500/30 text-yellow-400")}>{report.publicationStatus==="PUBLISHED"?"Published":report.publicationStatus.replace("_"," ")}</span>
               </div>
               <h3 className="mt-3 text-base font-semibold text-foreground">{report.title}</h3>
               <p className="mt-2 flex-1 text-sm text-muted">{report.summary}</p>
