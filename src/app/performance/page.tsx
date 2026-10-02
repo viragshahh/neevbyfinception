@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { listHoldings, listNavHistory } from "@/lib/portfolio-db";
+import { listNavHistory } from "@/lib/portfolio-db";
 import { computePerformanceStats } from "@/lib/performance";
 import { FUND_CONFIG } from "@/lib/sectors";
 import { formatCompact, formatPercent } from "@/lib/format";
@@ -22,7 +22,6 @@ function Metric({ label, value, note }: { label: string; value: string; note?: s
 }
 
 export default async function PerformancePage() {
-  const holdings = await listHoldings();
   const history = await listNavHistory();
   const liveValue = null;
   const stats = computePerformanceStats(history.map((x) => ({ date: x.date, value: x.nav })));
