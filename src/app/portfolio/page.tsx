@@ -22,7 +22,7 @@ export default async function PortfolioPage() {
     : [];
   const { history, liveValue } = await getNavTimeline(holdings, quotes);
   const breakdown = computeFundBreakdown(holdings, quotes);
-  const totalReturn = totalReturnPct(liveValue);
+  const totalReturn = history.length > 1 ? totalReturnPct(liveValue) : null;
   const holdingsWithLive = withLiveMetrics(activeHoldings, quotes);
 
   return (
@@ -68,7 +68,7 @@ export default async function PortfolioPage() {
             <p className="font-label text-[10px] text-accent">PERFORMANCE</p>
             <h2 className="mt-1 text-xl font-semibold">NEEV valuation history</h2>
           </div>
-          <span className="text-xs text-muted">Benchmark feed pending verified TRI connection</span>
+          <span className="text-xs text-muted">Nifty 500 TRI comparison withheld until a verified total-return series is connected</span>
         </div>
         <div className="mt-4">
           <PerformanceChart navHistory={history} benchmark={[]} />
@@ -87,7 +87,7 @@ export default async function PortfolioPage() {
           {SECTORS.map((sector) => {
             const item = breakdown.bySector.find((x) => x.sector === sector.name);
             return (
-              <Link key={sector.slug} href={`/industries/${sector.slug}`} className="card p-5 hover:border-accent">
+              <Link key={sector.slug} href="/industries" className="card p-5 hover:border-accent">
                 <p className="text-sm font-medium text-foreground">{sector.name}</p>
                 <p className="mt-3 text-2xl font-bold">{item ? formatPercent(item.weightPct) : "0.0%"}</p>
               </Link>
@@ -102,7 +102,7 @@ export default async function PortfolioPage() {
             <p className="font-label text-[10px] text-accent">HOLDINGS</p>
             <h2 className="mt-1 text-xl font-semibold">Current positions</h2>
           </div>
-          <span className="text-xs text-muted">Live quotes where available</span>
+          <span className="text-xs text-muted">Market prices where available · valuation status is disclosed below</span>
         </div>
         <div className="card overflow-x-auto p-0">
           {holdingsWithLive.length ? (
