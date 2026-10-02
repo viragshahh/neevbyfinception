@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ReportsGrid from "@/components/ReportsGrid";
 import { listReports } from "@/lib/reports-db";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "NEEV Library",
   description:
