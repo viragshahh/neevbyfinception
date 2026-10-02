@@ -7,12 +7,14 @@ export const metadata: Metadata = {
 };
 
 const items = [
-  ["Portfolio valuation", "Active positions are valued using the latest available market quote. The current ledger model is transitional and does not yet represent a full transaction-level accounting system."],
-  ["Performance", "Published return statistics are derived from the available NEEV valuation history. External cash flows, dividends, transaction costs and corporate actions must be incorporated before treating the series as a complete institutional track record."],
+  ["Portfolio valuation", "Active positions are derived from the controlled transaction ledger and marked to the latest available market quote where supplied. Missing quotes are disclosed and cost is retained only as an explicitly identified fallback estimate."],
+  ["Performance", "Published return statistics use approved valuation observations. Transaction, cash and corporate-action ledgers are the foundation for the next stage of TWR/MWR and attribution reporting; incomplete history is not presented as a fully reconciled institutional track record."],
   ["Benchmark", "The governing benchmark is Nifty 500 TRI. The site will not substitute the Nifty 500 price index for TRI merely because a convenient market-data ticker is available."],
-  ["Risk controls", "Exposure checks use the Fund Charter limits: 8% initial position guideline, 10% individual position limit, 30% sector limit, 15–25 holdings at full deployment and 0–5% cash."],
+  ["Risk controls", "Pre-trade checks and portfolio monitoring use the Fund Charter limits: 8% initial position, 10% individual position, 30% sector exposure, 15–25 holdings at full deployment and 0–5% cash. The system distinguishes pre-deployment from an actual limit breach."],
   ["Market data", "Live market information is provided through the site's configured market-data provider and may be delayed, unavailable or subject to provider limitations."],
-  ["Research status", "Research is published only when it has been completed and reviewed. Empty or developing sections are intentionally not represented as completed work."],
+  ["Research publication", "Each document carries a type, issue, version and publication status. Documents in review remain identifiable and are not represented as approved publication merely because a file has been uploaded. Known corrections are retained in the publication workflow rather than silently overwritten."],
+  ["Governance", "Material trades require an approved Investment Committee decision. Decision and transaction records are immutable; amendments are represented as new records so the historical decision trail remains reconstructable."],
+  ["Recordkeeping", "Supabase is the production book of record for portfolio, cash, decision and research metadata. Legacy Google Sheet environment variables no longer override production portfolio data."],
 ];
 
 export default function MethodologyPage() {
