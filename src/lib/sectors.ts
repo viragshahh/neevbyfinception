@@ -5,10 +5,10 @@ export interface Sector {
 
 export const SECTORS: Sector[] = [
   { slug: "banking-financial-services", name: "Banking & Financial Services" },
-  { slug: "it", name: "IT" },
-  { slug: "healthcare", name: "Healthcare" },
+  { slug: "automobile", name: "Automobile" },
+  { slug: "energy-infrastructure", name: "Energy & Infrastructure" },
   { slug: "fmcg", name: "FMCG" },
-  { slug: "renewable-energy", name: "Renewable Energy" },
+  { slug: "pharmaceuticals", name: "Pharmaceuticals" },
 ];
 
 export function getSector(slug: string): Sector | undefined {
