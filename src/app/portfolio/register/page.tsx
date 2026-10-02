@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getDecisions } from "@/lib/google-sheet-portfolio";
+import { listDecisions } from "@/lib/portfolio-db";
 import DecisionRegisterList from "@/components/portfolio/DecisionRegisterList";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 export default async function DecisionRegisterPage() {
-  const decisions = await getDecisions();
+  const decisions = await listDecisions();
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
