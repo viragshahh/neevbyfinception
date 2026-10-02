@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getQuotes } from "@/lib/yahoo";
-import { getHoldings } from "@/lib/google-sheet-portfolio";
+import { listHoldings } from "@/lib/portfolio-db";
 import { computeCharterStatus, computeFundBreakdown } from "@/lib/fund-engine";
 import { FUND_CONFIG } from "@/lib/sectors";
 import { formatPercent, formatCompact } from "@/lib/format";
@@ -20,7 +20,7 @@ function Status({ ok, label }: { ok: boolean; label: string }) {
 }
 
 export default async function RiskPage() {
-  const holdings = await getHoldings();
+  const holdings = await listHoldings();
   const active = holdings.filter((h) => h.status === "active");
   const quotes = active.length ? await getQuotes(active.map((h) => h.symbol)).catch(() => []) : [];
   const breakdown = computeFundBreakdown(holdings, quotes);
@@ -39,9 +39,9 @@ export default async function RiskPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="card p-5"><p className="text-xs text-muted">Holdings</p><p className="mt-2 text-2xl font-bold">{breakdown.activeNames}</p><p className="mt-1 text-xs text-muted">Target {FUND_CONFIG.minNamesAtFullDeployment}–{FUND_CONFIG.maxNamesAtFullDeployment}</p><Status ok={status.holdings.status === "within"} label={status.holdings.status === "within" ? "Within range" : "Review"} /></div>
-        <div className="card p-5"><p className="text-xs text-muted">Largest position</p><p className="mt-2 text-2xl font-bold">{formatPercent(breakdown.maxSingleStockPct, false)}</p><p className="mt-1 text-xs text-muted">{breakdown.maxSingleStockSymbol ?? "No active holdings"}</p><Status ok={status.singleStock.status === "within"} label={status.singleStock.status === "within" ? "Within 10%" : "Above limit"} /></div>
-        <div className="card p-5"><p className="text-xs text-muted">Largest sector</p><p className="mt-2 text-2xl font-bold">{formatPercent(breakdown.maxSectorPct, false)}</p><p className="mt-1 text-xs text-muted">{breakdown.maxSector ?? "No active holdings"}</p><Status ok={status.sector.status === "within"} label={status.sector.status === "within" ? "Within 30%" : "Above limit"} /></div>
-        <div className="card p-5"><p className="text-xs text-muted">Cash</p><p className="mt-2 text-2xl font-bold">{formatPercent(breakdown.cashPct, false)}</p><p className="mt-1 text-xs text-muted">{formatCompact(breakdown.cash)}</p><Status ok={status.cash.status === "within" && status.leverage.status === "within"} label={status.leverage.status === "breach" ? "Leverage breach" : status.cash.status === "within" ? "Within range" : "Review"} /></div>
+        <div className="card p-5"><p className="text-xs text-muted">Largest position</p><p className="mt-2 text-2xl font-bold">{formatPercent(breakdown.maxSingleStockPct, false).replace("+","")}</p><p className="mt-1 text-xs text-muted">{breakdown.maxSingleStockSymbol ?? "No active holdings"}</p><Status ok={status.singleStock.status === "within"} label={status.singleStock.status === "within" ? "Within 10%" : "Above limit"} /></div>
+        <div className="card p-5"><p className="text-xs text-muted">Largest sector</p><p className="mt-2 text-2xl font-bold">{formatPercent(breakdown.maxSectorPct, false).replace("+","")}</p><p className="mt-1 text-xs text-muted">{breakdown.maxSector ?? "No active holdings"}</p><Status ok={status.sector.status === "within"} label={status.sector.status === "within" ? "Within 30%" : "Above limit"} /></div>
+        <div className="card p-5"><p className="text-xs text-muted">Cash</p><p className="mt-2 text-2xl font-bold">{formatPercent(breakdown.cashPct, false).replace("+","")}</p><p className="mt-1 text-xs text-muted">{formatCompact(breakdown.cash)}</p><Status ok={status.cash.status === "within" && status.leverage.status === "within"} label={status.leverage.status === "breach" ? "Leverage breach" : status.cash.status === "within" ? "Within range" : "Review"} /></div>
       </div>
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -53,7 +53,7 @@ export default async function RiskPage() {
             ) : breakdown.bySector.map((item) => (
               <div key={item.sector} className="flex items-center justify-between gap-4 p-5">
                 <span className="text-sm text-foreground">{item.sector}</span>
-                <span className="font-mono text-sm">{formatPercent(item.weightPct, false)}</span>
+                <span className="font-mono text-sm">{formatPercent(item.weightPct, false).replace("+","")}</span>
               </div>
             ))}
           </div>
@@ -72,7 +72,7 @@ export default async function RiskPage() {
               All active holdings have a current quote.
             </div>
           )}
-          <div className="mt-6 space-y-3 text-sm">
+          <div className="mt-6 space-y-3 text-sm"><div className="flex justify-between"><span className="text-muted">Quote coverage</span><span>{breakdown.quoteCoveragePct.toFixed(1)}%</span></div>
             <div className="flex justify-between"><span className="text-muted">Initial position limit</span><span>8%</span></div>
             <div className="flex justify-between"><span className="text-muted">Single stock limit</span><span>10%</span></div>
             <div className="flex justify-between"><span className="text-muted">Sector limit</span><span>30%</span></div>
