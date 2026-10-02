@@ -67,6 +67,10 @@ export async function POST(req: NextRequest) {
       fileUrl,
       fileSizeBytes: file.size,
       type,
+      issueNumber: formData.get("issueNumber") ? Number(formData.get("issueNumber")) : null,
+      version: formData.get("version") ? Number(formData.get("version")) : 1,
+      publicationStatus: (String(formData.get("publicationStatus") ?? "IN_REVIEW")) as "DRAFT" | "IN_REVIEW" | "PUBLISHED" | "SUPERSEDED" | "WITHDRAWN",
+      dataCutoff: formData.get("dataCutoff") ? String(formData.get("dataCutoff")) : null,
     });
     return NextResponse.json({ report }, { status: 201 });
   } catch (err) {
@@ -96,7 +100,7 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Delete failed." },
+      { error: err instanceof Error ? err.message : "Withdraw failed." },
       { status: 500 }
     );
   }
