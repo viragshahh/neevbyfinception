@@ -25,6 +25,10 @@ export interface IndustryReport {
   fileSizeBytes: number;
   uploadedAt: string;
   type: ReportType;
+  issueNumber: number | null;
+  version: number;
+  publicationStatus: "DRAFT" | "IN_REVIEW" | "PUBLISHED" | "SUPERSEDED" | "WITHDRAWN";
+  dataCutoff: string | null;
 }
 
 interface ReportRow {
@@ -39,6 +43,10 @@ interface ReportRow {
   file_size_bytes: number;
   uploaded_at: string;
   type: string;
+  issue_number: number | null;
+  version: number;
+  publication_status: string;
+  data_cutoff: string | null;
 }
 
 function fromRow(row: ReportRow): IndustryReport {
@@ -53,6 +61,10 @@ function fromRow(row: ReportRow): IndustryReport {
     fileUrl: row.file_url,
     fileSizeBytes: row.file_size_bytes,
     uploadedAt: row.uploaded_at,
+    issueNumber: row.issue_number ?? null,
+    version: row.version ?? 1,
+    publicationStatus: ["DRAFT","IN_REVIEW","PUBLISHED","SUPERSEDED","WITHDRAWN"].includes(row.publication_status) ? row.publication_status as IndustryReport["publicationStatus"] : "IN_REVIEW",
+    dataCutoff: row.data_cutoff ?? null,
     type: [
       "monthly_review",
       "industry_report",
@@ -142,6 +154,10 @@ export async function addReport(
     file_size_bytes: input.fileSizeBytes,
     uploaded_at: new Date().toISOString(),
     type: input.type,
+    issue_number: input.issueNumber ?? null,
+    version: input.version ?? 1,
+    publication_status: input.publicationStatus ?? "IN_REVIEW",
+    data_cutoff: input.dataCutoff ?? null,
   };
 
   const { data, error } = await supabase.from("reports").insert(row).select().single();
@@ -149,18 +165,8 @@ export async function addReport(
   return fromRow(data as ReportRow);
 }
 
-export async function deleteReport(id: string): Promise<boolean> {
-  const { data: existing, error: fetchError } = await supabase
-    .from("reports")
-    .select("file_name")
-    .eq("id", id)
-    .maybeSingle();
-  if (fetchError) throw new Error(`Failed to look up report: ${fetchError.message}`);
-  if (!existing) return false;
-
-  const { error: deleteError } = await supabase.from("reports").delete().eq("id", id);
-  if (deleteError) throw new Error(`Failed to delete report: ${deleteError.message}`);
-
-  await supabase.storage.from(REPORTS_BUCKET).remove([existing.file_name]);
-  return true;
+export async function deleteReport(id:string):Promise<boolean>{
+  const {data,error}=await supabase.from("reports").update({publication_status:"WITHDRAWN"}).eq("id",id).select("id").maybeSingle();
+  if(error)throw new Error(`Failed to withdraw report: ${error.message}`);
+  return !!data;
 }
