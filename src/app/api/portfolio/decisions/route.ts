@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { checkPasscode } from "@/lib/admin-auth";
+import { isAdminRequest } from "@/lib/admin-auth";
 import { addDecision, listDecisions } from "@/lib/portfolio-db";
 const VALID_DECISIONS=["BUY","HOLD","SELL"],VALID_STATUS=["DRAFT","APPROVED","REJECTED","AMENDED","SUPERSEDED"];
 export async function GET(){return NextResponse.json({decisions:await listDecisions()});}
 export async function POST(req:NextRequest){
- const body=await req.json().catch(()=>null);if(!checkPasscode(body?.passcode))return NextResponse.json({error:"Invalid admin passcode."},{status:401});
+ const body=await req.json().catch(()=>null);if(!isAdminRequest(req, body?.passcode))return NextResponse.json({error:"Invalid admin passcode."},{status:401});
  const date=String(body?.date??"").trim(),sector=String(body?.sector??"").trim(),decision=String(body?.decision??"").trim().toUpperCase(),rationale=String(body?.rationale??"").trim();
  const companyName=body?.companyName?String(body.companyName).trim():null,symbol=body?.symbol?String(body.symbol).trim().toUpperCase():null,status=String(body?.status??"DRAFT").trim().toUpperCase();
  const proposedWeight=body?.proposedWeight==null?null:Number(body.proposedWeight),votesFor=body?.votesFor==null?null:Number(body.votesFor),votesAgainst=body?.votesAgainst==null?null:Number(body.votesAgainst),abstentions=body?.abstentions==null?null:Number(body.abstentions),quorum=body?.quorum==null?null:Number(body.quorum);
