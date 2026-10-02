@@ -23,7 +23,6 @@ function Metric({ label, value, note }: { label: string; value: string; note?: s
 
 export default async function PerformancePage() {
   const history = await listNavHistory();
-  const liveValue = null;
   const stats = computePerformanceStats(history.map((x) => ({ date: x.date, value: x.nav })));
 
   return (
