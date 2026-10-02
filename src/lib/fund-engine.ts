@@ -7,9 +7,9 @@ function canonicalSector(sector:string){const s=sector.trim().toLowerCase();if(s
 
 export function computeFundValue(holdings:Holding[],quotes:QuoteData[]):number{
   const active=aggregateActive(holdings,quotes);
-  const committedCost=holdings.reduce((s,h)=>s+h.avgCost*h.quantity,0);
-  const proceeds=holdings.filter(h=>h.status==="exited").reduce((s,h)=>s+(h.exitPrice??h.avgCost)*h.quantity,0);
-  const cash=FUND_CONFIG.notionalAum-committedCost+proceeds;
+  const buyCash=holdings.reduce((s,h)=>s+h.buyCash,0);
+  const sellCash=holdings.reduce((s,h)=>s+h.sellCash,0);
+  const cash=FUND_CONFIG.notionalAum-buyCash+sellCash;
   return cash+active.reduce((s,h)=>s+h.marketValue,0);
 }
 
