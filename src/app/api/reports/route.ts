@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkPasscode } from "@/lib/admin-auth";
+import { isAdminRequest } from "@/lib/admin-auth";
 import { addReport, deleteReport, listReports, uploadReportFile, type ReportType } from "@/lib/reports-db";
 
 const MAX_FILE_BYTES = 25 * 1024 * 1024; // 25MB
@@ -12,7 +12,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
 
-  if (!checkPasscode(formData.get("passcode"))) {
+  if (!isAdminRequest(req, formData.get("passcode"))) {
     return NextResponse.json({ error: "Invalid upload passcode." }, { status: 401 });
   }
 
@@ -81,7 +81,7 @@ export async function DELETE(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const id = body?.id ? String(body.id) : "";
 
-  if (!checkPasscode(body?.passcode)) {
+  if (!isAdminRequest(req, body?.passcode)) {
     return NextResponse.json({ error: "Invalid upload passcode." }, { status: 401 });
   }
   if (!id) {
