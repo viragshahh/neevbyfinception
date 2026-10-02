@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import PerformanceChart from "@/components/portfolio/PerformanceChart";
 import { getQuotes } from "@/lib/yahoo";
 import { getNavTimeline } from "@/lib/google-sheet-nav";
-import { getDecisions, getHoldings } from "@/lib/google-sheet-portfolio";
+import { listDecisions, listHoldings } from "@/lib/portfolio-db";
 import { computeFundBreakdown, totalReturnPct } from "@/lib/fund-engine";
 import { FUND_CONFIG, SECTORS } from "@/lib/sectors";
 import { formatCompact, formatPercent } from "@/lib/format";
@@ -26,7 +26,7 @@ function Stat({ label, value, note }: { label: string; value: string; note?: str
 }
 
 export default async function Home() {
-  const [holdings, decisions] = await Promise.all([getHoldings(), getDecisions()]);
+  const [holdings, decisions] = await Promise.all([listHoldings(), listDecisions()]);
   const active = holdings.filter((h) => h.status === "active");
   const quotes = active.length ? await getQuotes(active.map((h) => h.symbol)).catch(() => []) : [];
   const { history, liveValue } = await getNavTimeline(holdings, quotes);
