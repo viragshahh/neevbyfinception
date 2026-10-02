@@ -31,7 +31,7 @@ export default async function Home() {
   const quotes = active.length ? await getQuotes(active.map((h) => h.symbol)).catch(() => []) : [];
   const { history, liveValue } = await getNavTimeline(holdings, quotes);
   const breakdown = computeFundBreakdown(holdings, quotes);
-  const returnPct = totalReturnPct(liveValue);
+  const returnPct = history.length > 1 ? totalReturnPct(liveValue) : null;
 
   return (
     <div>
@@ -68,8 +68,8 @@ export default async function Home() {
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Stat label="Current fund value" value={formatCompact(liveValue)} note="Live portfolio valuation" />
-          <Stat label="Since inception" value={formatPercent(returnPct, false)} note="Against initial notional capital" />
+          <Stat label="Notional portfolio value" value={history.length || active.length ? formatCompact(liveValue) : "Not available"} note="Indicative live mark; not a statement of AUM" />
+          <Stat label="Since inception" value={returnPct === null ? "Not available" : formatPercent(returnPct, false)} note={returnPct === null ? "Requires approved valuation history" : "Against initial notional capital"} />
           <Stat label="Active holdings" value={String(breakdown.activeNames)} note="Charter target: 15–25 at full deployment" />
           <Stat label="Cash" value={formatPercent(breakdown.cashPct, false)} note="Charter range: 0–5%" />
         </section>
@@ -126,7 +126,7 @@ export default async function Home() {
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {SECTORS.map((sector) => (
-              <Link key={sector.slug} href={`/industries/${sector.slug}`} className="card p-5 transition-colors hover:border-accent">
+              <Link key={sector.slug} href="/industries" className="card p-5 transition-colors hover:border-accent">
                 <p className="text-sm font-semibold text-foreground">{sector.name}</p>
                 <p className="mt-2 text-xs leading-5 text-muted">Sector thesis, value chain, financials, valuation and risks.</p>
               </Link>
@@ -180,7 +180,7 @@ export default async function Home() {
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="font-label text-[10px] text-accent">BY FINCEPTION</p>
-              <h2 className="mt-2 text-2xl font-semibold">NEEV is the investment initiative. Finception is the institution behind it.</h2>
+              <h2 className="mt-2 text-2xl font-semibold">NEEV is the investment initiative. Finception is the student finance club supporting it.</h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">
                 The investment process belongs to NEEV. The broader student finance ecosystem,
                 club activities and financial-literacy outreach remain part of Finception.
