@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getQuotes } from "@/lib/yahoo";
 import { getNavTimeline } from "@/lib/google-sheet-nav";
-import { getDecisions, getHoldings } from "@/lib/google-sheet-portfolio";
+import { listDecisions, listHoldings } from "@/lib/portfolio-db";
 import { computeFundBreakdown, totalReturnPct, withLiveMetrics } from "@/lib/fund-engine";
 import { FUND_CONFIG, SECTORS } from "@/lib/sectors";
 import { formatCompact, formatPercent, formatPrice, formatSigned } from "@/lib/format";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 export default async function PortfolioPage() {
-  const [holdings, decisions] = await Promise.all([getHoldings(), getDecisions()]);
+  const [holdings, decisions] = await Promise.all([listHoldings(), listDecisions()]);
   const activeHoldings = holdings.filter((h) => h.status === "active");
   const quotes = activeHoldings.length
     ? await getQuotes(activeHoldings.map((h) => h.symbol)).catch(() => [])
