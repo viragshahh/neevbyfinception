@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { checkPasscode } from "@/lib/admin-auth";
+import { isAdminRequest } from "@/lib/admin-auth";
 import { addNavEntry, listNavHistory } from "@/lib/portfolio-db";
 
 export async function GET() {
@@ -10,7 +10,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
-  if (!checkPasscode(body?.passcode)) {
+  if (!isAdminRequest(req, body?.passcode)) {
     return NextResponse.json({ error: "Invalid upload passcode." }, { status: 401 });
   }
 
