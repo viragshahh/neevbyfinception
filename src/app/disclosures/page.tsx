@@ -17,7 +17,7 @@ export default async function DisclosuresPage() {
         <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
           A professional fund website should make its methodology, portfolio information and
           research outputs easy to find. NEEV will use this section as the permanent disclosure
-          center as the fund cycle progresses.
+          center as the fund evolves.
         </p>
       </header>
 
@@ -27,7 +27,7 @@ export default async function DisclosuresPage() {
           ["Portfolio Disclosures", "Historical holdings and allocation snapshots, published with an as-of date."],
           ["Investment Committee Memos", "Documented decisions with thesis, valuation, risks and vote outcome as the system matures."],
           ["Quarterly Reviews", "Fundamental and valuation review of the portfolio."],
-          ["Annual Review", "Performance, attribution, process review and lessons from the investment cycle."],
+          ["Annual Review", "Performance, attribution, process review and lessons from the fund's ongoing investment process."],
           ["Methodology & Disclosures", "Definitions, calculation methods, data sources and limitations."],
         ].map(([title, text]) => (
           <div key={title} className="card p-6">
