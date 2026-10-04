@@ -18,18 +18,19 @@ export function getSector(slug: string): Sector | undefined {
 export interface Layer {
   key: string;
   label: string;
+  month: string;
   question: string;
 }
 
 export const LAYERS: Layer[] = [
-  { key: "overview", label: "Overview", question: "Should we invest in this industry?" },
-  { key: "valueChain", label: "Value Chain", question: "Where in the value chain should we invest?" },
-  { key: "businessModel", label: "Business Model", question: "Which business model deserves our capital?" },
-  { key: "financialDashboard", label: "Financial Dashboard", question: "Which companies generate superior returns?" },
-  { key: "valuationDashboard", label: "Valuation Dashboard", question: "Which companies are undervalued today?" },
-  { key: "governanceEsg", label: "Governance & ESG", question: "Can management be trusted with capital?" },
-  { key: "growthRisk", label: "Growth & Risk", question: "What will drive returns over 3-5 years?" },
-  { key: "annualReview", label: "Annual Review", question: "Did our process outperform the market?" },
+  { key: "overview", label: "Overview", month: "Ongoing", question: "Should we invest in this industry?" },
+  { key: "valueChain", label: "Value Chain", month: "Ongoing", question: "Where in the value chain should we invest?" },
+  { key: "businessModel", label: "Business Model", month: "Ongoing", question: "Which business model deserves our capital?" },
+  { key: "financialDashboard", label: "Financial Dashboard", month: "Ongoing", question: "Which companies generate superior returns?" },
+  { key: "valuationDashboard", label: "Valuation Dashboard", month: "Ongoing", question: "Which companies are undervalued today?" },
+  { key: "governanceEsg", label: "Governance & ESG", month: "Ongoing", question: "Can management be trusted with capital?" },
+  { key: "growthRisk", label: "Growth & Risk", month: "Ongoing", question: "What will drive returns over 3-5 years?" },
+  { key: "annualReview", label: "Annual Review", month: "Ongoing", question: "Did our process outperform the market?" },
 ];
 
 export function getLayer(key: string): Layer | undefined {
