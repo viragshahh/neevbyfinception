@@ -47,6 +47,7 @@ export const FUND_CONFIG = {
   currency: "INR",
   benchmarkName: "Nifty 500 TRI",
   benchmarkSymbol: null as string | null,
+  cycleLabel: "Perpetual",
   maxInitialPositionWeight: 0.08,
   maxSingleStockWeight: 0.1,
   maxSingleSectorWeight: 0.3,
