@@ -1,6 +1,6 @@
 # NEEV — New-age Equity Evaluation & Valuation
 
-NEEV is an eight-month, student-managed Indian equity research and portfolio-management initiative operated through Finception at Great Lakes Institute of Management, Gurgaon.
+NEEV is a perpetual, student-managed Indian equity research and portfolio-management initiative operated through Finception at Great Lakes Institute of Management, Gurgaon.
 
 The website is deliberately designed as a research and governance record, not as a public investment-advice platform.
 
