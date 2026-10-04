@@ -51,7 +51,7 @@ export default function Footer() {
             </p>
             <div className="mt-5 flex flex-wrap gap-2 font-mono text-[10px] text-muted">
               <span className="rounded-full border border-border px-2.5 py-1">Benchmark: Nifty 500 TRI</span>
-              <span className="rounded-full border border-border px-2.5 py-1">Aug to Mar Cycle</span>
+
             </div>
           </div>
 
