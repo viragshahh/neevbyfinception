@@ -37,7 +37,6 @@ export default async function PortfolioPage() {
         <div className="mt-4 flex flex-wrap gap-2 font-mono text-xs text-muted">
           <span className="rounded-md border border-border px-3 py-1.5">Benchmark: {FUND_CONFIG.benchmarkName}</span>
           <span className="rounded-md border border-border px-3 py-1.5">Horizon: {FUND_CONFIG.horizonLabel}</span>
-          <span className="rounded-md border border-border px-3 py-1.5">{FUND_CONFIG.cycleLabel}</span>
         </div>
       </header>
 
