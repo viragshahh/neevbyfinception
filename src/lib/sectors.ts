@@ -18,19 +18,18 @@ export function getSector(slug: string): Sector | undefined {
 export interface Layer {
   key: string;
   label: string;
-  month: string;
   question: string;
 }
 
 export const LAYERS: Layer[] = [
-  { key: "overview", label: "Overview", month: "Aug", question: "Should we invest in this industry?" },
-  { key: "valueChain", label: "Value Chain", month: "Sep", question: "Where in the value chain should we invest?" },
-  { key: "businessModel", label: "Business Model", month: "Oct", question: "Which business model deserves our capital?" },
-  { key: "financialDashboard", label: "Financial Dashboard", month: "Nov", question: "Which companies generate superior returns?" },
-  { key: "valuationDashboard", label: "Valuation Dashboard", month: "Dec", question: "Which companies are undervalued today?" },
-  { key: "governanceEsg", label: "Governance & ESG", month: "Jan", question: "Can management be trusted with capital?" },
-  { key: "growthRisk", label: "Growth & Risk", month: "Feb", question: "What will drive returns over 3-5 years?" },
-  { key: "annualReview", label: "Annual Review", month: "Mar", question: "Did our process outperform the market?" },
+  { key: "overview", label: "Overview", question: "Should we invest in this industry?" },
+  { key: "valueChain", label: "Value Chain", question: "Where in the value chain should we invest?" },
+  { key: "businessModel", label: "Business Model", question: "Which business model deserves our capital?" },
+  { key: "financialDashboard", label: "Financial Dashboard", question: "Which companies generate superior returns?" },
+  { key: "valuationDashboard", label: "Valuation Dashboard", question: "Which companies are undervalued today?" },
+  { key: "governanceEsg", label: "Governance & ESG", question: "Can management be trusted with capital?" },
+  { key: "growthRisk", label: "Growth & Risk", question: "What will drive returns over 3-5 years?" },
+  { key: "annualReview", label: "Annual Review", question: "Did our process outperform the market?" },
 ];
 
 export function getLayer(key: string): Layer | undefined {
@@ -48,8 +47,6 @@ export const FUND_CONFIG = {
   currency: "INR",
   benchmarkName: "Nifty 500 TRI",
   benchmarkSymbol: null as string | null,
-  cycleLabel: "Aug 2026 - Mar 2027",
-  cycleStartDate: "2026-08-01",
   maxInitialPositionWeight: 0.08,
   maxSingleStockWeight: 0.1,
   maxSingleSectorWeight: 0.3,
